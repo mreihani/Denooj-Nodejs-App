@@ -1,0 +1,195 @@
+<aside class="layout-menu menu-vertical menu bg-menu-theme" id="layout-menu">
+    <div class="app-brand demo">
+        <a class="app-brand-link" href="dashboard">
+            <span class="app-brand-logo demo">
+                <img src="/../../assets/img/denooj/logo.png" alt="" width="35">
+            </span>
+        </a>
+        <a class="layout-menu-toggle menu-link text-large ms-auto" href="">
+            <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+            <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-2">
+
+        <!-- Dashboard -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">
+                پیشخوان
+            </span>
+        </li>
+        <li class="menu-item pb-2 <%= data.url == '/dashboard' ? 'active open' : '' %>">
+            <a class="menu-link" href="/admin/dashboard">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>
+                    پیشخوان
+                </div>
+            </a>
+        </li>
+
+        <!-- Profile -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">
+                مدیریت صفحات حساب کاربری
+            </span>
+        </li>
+        <li class="menu-item py-2
+            <%= data.url == '/profile' ? 'active open' : '' %>
+            <%= data.url == '/account-settings' ? 'active open' : '' %>
+        ">
+            <a class="menu-link menu-toggle" href="">
+                <i class="menu-icon tf-icons ti ti-user"></i>
+                <div>حساب کاربری</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item <%= data.url == '/profile' ? 'active open' : '' %>">
+                    <a class="menu-link" href="/admin/profile">
+                        <div>
+                            پروفایل من
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-item <%= data.url == '/account-settings' ? 'active open' : '' %>">
+                    <a class="menu-link" href="/admin/account-settings">
+                        <div>
+                            تنظیمات حساب کاربری
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+      
+        <!-- Ecommerce menu -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">
+                مدیریت فروشگاه
+            </span>
+        </li>
+        <li class="menu-item py-2 
+            <%= data.url == '/product/create' ? 'active open' : '' %>
+            <%= data.url == '/product' ? 'active open' : '' %>
+            <%= data.url == '/product/search' ? 'active open' : '' %>
+            <%= data.url == '/category/create' ? 'active open' : '' %>
+            <%= data.url == '/category' ? 'active open' : '' %>
+            <%= data.url == '/category/search' ? 'active open' : '' %>
+            <%= data.url == '/orders' ? 'active open' : '' %>
+            <%= data.url == '/orders/search' ? 'active open' : '' %>
+        ">
+            <a class="menu-link menu-toggle" href="">
+                <i class="menu-icon tf-icons ti ti-shopping-cart"></i>
+                <div >
+                    فروشگاه
+                </div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item 
+                    <%= data.url == '/product/create' ? 'active open' : '' %>
+                    <%= data.url == '/product' ? 'active open' : '' %>
+                    <%= data.url == '/product/search' ? 'active open' : '' %>
+                ">
+                    <a class="menu-link menu-toggle" href="">
+                        <div>محصولات</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item 
+                            <%= data.url == '/product' ? 'active open' : '' %>
+                            <%= data.url == '/product/search' ? 'active open' : '' %>
+                        ">
+                            <a class="menu-link" href="/admin/product">
+                                <div>لیست محصولات</div>
+                            </a>
+                        </li>
+                        <li class="menu-item <%= data.url == '/product/create' ? 'active open' : '' %>">
+                            <a class="menu-link" href="/admin/product/create">
+                                <div>افزودن محصول</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item 
+                    <%= data.url == '/category/create' ? 'active open' : '' %> 
+                    <%= data.url == '/category' ? 'active open' : '' %>
+                    <%= data.url == '/category/search' ? 'active open' : '' %>
+                ">
+                    <a class="menu-link menu-toggle" href="">
+                        <div>دسته بندی ها</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item 
+                            <%= data.url == '/category' ? 'active open' : '' %>
+                            <%= data.url == '/category/search' ? 'active open' : '' %>
+                        ">
+                            <a class="menu-link" href="/admin/category">
+                                <div>لیست دسته بندی ها</div>
+                            </a>
+                        </li>
+                        <li class="menu-item <%= data.url == '/category/create' ? 'active open' : '' %>">
+                            <a class="menu-link" href="/admin/category/create">
+                                <div>افزودن دسته بندی</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item
+                    <%= data.url == '/orders' ? 'active open' : '' %>
+                    <%= data.url == '/orders/search' ? 'active open' : '' %>
+                ">
+                    <a class="menu-link menu-toggle" href="">
+                        <div>سفارشات</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item
+                            <%= data.url == '/orders' ? 'active open' : '' %>
+                            <%= data.url == '/orders/search' ? 'active open' : '' %>
+                        ">
+                            <a class="menu-link" href="/admin/orders">
+                                <div>لیست سفارشات</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </li>
+
+        <!-- User management -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">
+                مدیریت کاربران
+            </span>
+        </li>
+        <li class="menu-item py-2
+            <%= data.url == '/user/create' ? 'active open' : '' %>
+            <%= data.url == '/user' ? 'active open' : '' %>
+            <%= data.url == '/user/search' ? 'active open' : '' %>
+        ">
+            <a class="menu-link menu-toggle" href="">
+                <i class="menu-icon tf-icons ti ti-users"></i>
+                <div>کاربران</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item 
+                    <%= data.url == '/user' ? 'active open' : '' %>
+                    <%= data.url == '/user/search' ? 'active open' : '' %>
+                ">
+                    <a class="menu-link" href="/admin/user">
+                        <div>
+                            لیست کاربران
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-item <%= data.url == '/user/create' ? 'active open' : '' %>">
+                    <a class="menu-link" href="/admin/user/create">
+                        <div>
+                            افزودن کاربر
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+  </aside>

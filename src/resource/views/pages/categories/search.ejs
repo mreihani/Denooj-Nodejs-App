@@ -1,0 +1,101 @@
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="py-3 mb-0">
+        <span class="text-muted fw-light">مدیرت فروشگاه /</span>
+        جستجو دسته بندی
+    </h4>
+    <div class="">
+        <div class="card">
+            <div class="card-header flex-column flex-md-row">
+                <div class="head-label text-center"></div>
+                
+                <div class="row">
+                    <div class="col-md-5 d-flex justify-content-start">
+                        <form method="GET" action="/admin/category/search">
+                            <div class="input-group">
+                                <button class="btn btn-outline-primary waves-effect" id="button-addon1" type="submit">
+                                    <i class="ti ti-search h-mirror me-1"></i>
+                                    جستجو
+                                </button>
+                                <input aria-describedby="button-addon1" class="form-control" placeholder="" type="search" name="q" value="<%= data.search %>">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-7 d-flex justify-content-md-end">
+                        <a href="/admin/category" class="text-white btn btn-primary waves-effect waves-light">
+                            <i class="ti ti-arrow-back me-sm-1"></i> 
+                            بازگشت به لیست دسته بندی ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-datatable table-responsive pt-0">
+                <table class="datatables-direct-basic table">
+                    <thead>
+                    <tr>
+                        <th>
+                            ردیف
+                        </th>
+                        <th>
+                            عنوان دسته بندی
+                        </th>
+                        <th>
+                            سطح دسته بندی
+                        </th>
+                        <th>
+                            عملیات
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data.category) { %>
+                            <% data.category.forEach(function(category, index) { %>
+                                <tr>
+                                    <td>
+                                        <bdi>
+                                            <%= index + 1 %>
+                                        </bdi>
+                                    </td>
+                                    <td>
+                                        <%= category.categoryTitle %>
+                                    </td>
+                                    <td>
+                                        تومان
+                                    </td>
+                                    <td>
+                                        <form action="/admin/category/destroy/<%= category._id %>?_method=DELETE" method="post">
+
+                                            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                            
+                                            <a href="/admin/category/<%= category._id %>/edit" class="btn btn-sm btn-icon item-edit">
+                                                <i class="text-primary ti ti-pencil"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-icon item-edit" onclick="return confirm('آیا برای انجام این کار اطمینان دارید؟')">
+                                                <i class="text-primary ti ti-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            <% }); %> 
+                        <% } %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+
+<style>
+    .table-responsive {
+        overflow-x: hidden;
+    }
+</style>
+
+
+<script>
+    
+</script>

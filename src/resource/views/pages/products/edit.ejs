@@ -1,0 +1,404 @@
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    
+    <% if(data.success != '') { %>
+        <div class="alert alert-success" role="alert">
+            <%= data.success %>
+        </div>
+    <% } %>   
+
+    <h4 class="py-3 mb-0">
+        <span class="text-muted fw-light">مدیرت فروشگاه /</span>
+        ویرایش محصول
+    </h4>
+    <div class="">
+        <form id="productSubmitForm" method="POST" action="/admin/product/update/<%= data.product._id %>?_method=PUT" class="fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate" encType="multipart/form-data">
+            
+            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+
+            <!-- Add Product -->
+            <div class="d-flex flex-column flex-md-row justify-content-end align-items-start align-items-md-center mb-3">
+                <div class="d-flex align-content-center flex-wrap gap-3">
+                    <div class="d-flex gap-3">
+                        <a href="/admin/product/index" class="btn btn-label-secondary waves-effect">انصراف و بازگشت</a>
+                    </div>
+                    <button id="btn-submit" class="btn btn-primary waves-effect waves-light">بروزرسانی محصول</button>
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <input type="hidden" name="full_editor_short_desc" id="full_editor_short_desc_hidden_input" value="<%= data.formData ? data.formData['full_editor_short_desc'] : data.product.shortDesc %>">
+                <input type="hidden" name="full_editor_long_desc" id="full_editor_long_desc_hidden_input" value="<%= data.formData ? data.formData['full_editor_long_desc'] : data.product.longDesc %>">
+
+                <!-- First column-->
+                <div class="col-12 col-lg-8">
+
+                    <!-- Product Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-tile mb-0">اطلاعات محصول</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <% if(data.errors.length != 0) { %>
+                                <% data.errors.forEach(function(error) { %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>    
+                                <% }) %>
+                            <% } %>
+
+                            <!-- Product title -->
+                            <div class="mb-3">
+                                <label class="form-label" for="ecommerce-product-name">نام محصول</label>
+                                <span class="text-danger">*</span>
+                                <input aria-label="عنوان محصول" class="form-control" id="ecommerce-product-name" name="product_title" placeholder="عنوان محصول را وارد نمایید" type="text" value="<%= data.formData ? data.formData['product_title'] : data.product.productTitle %>">
+                            </div>
+
+                            <!-- Product slug -->
+                            <div class="mb-3">
+                                <label class="form-label" for="ecommerce-product-slug">اسلاگ محصول (فقط حروف انگلیسی مجاز است)</label>
+                                <span class="text-danger">*</span>
+                                <input aria-label="اسلاگ محصول" class="form-control" id="ecommerce-product-slug" name="product_slug" placeholder="اسلاگ محصول را به انگلیسی وارد نمایید" type="text" value="<%= data.formData ? data.formData['product_slug'] : data.product.productSlug %>">
+                            </div>
+                        
+                            <!-- Short Description -->
+                            <div class="mt-4">
+                                <label class="form-label" for="ecommerce-product-short-desc">جزئیات محصول</label>
+                                <span class="text-danger">*</span>
+                                <div id="full-editor-short-desc"></div>
+                            </div>
+
+                            <!-- Long Description -->
+                            <div class="mt-4">
+                                <label class="form-label" for="ecommerce-product-long-desc">توضیحات کامل محصول</label>
+                                <span class="text-danger">*</span>
+                                <div id="full-editor-long-desc"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Product Information -->
+
+                    <!-- Pricing Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">قیمت گذاری</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Weight -->
+                                    <div class="mb-3 col-md-4 mb-0">
+                                        <label class="form-label" for="ecommerce-product-discount-price">واحد وزن (کیلوگرم)</label>
+                                        <input aria-label="مثلا 5" class="form-control" id="ecommerce-product-discount-price" name="product_weight" placeholder="وزن محصول را به عدد وارد نمایید" type="number" value="<%= data.formData ? data.formData['product_weight'] : data.product.productWeight %>">
+                                    </div>
+
+                                    <!-- Base Price -->
+                                    <div class="mb-3 col-md-4 mb-0">
+                                        <label class="form-label" for="ecommerce-product-price">قیمت پایه (تومان)</label>
+                                        <span class="text-danger">*</span>
+                                        <input aria-label="قیمت محصول" class="form-control" id="ecommerce-product-price" name="product_price" placeholder="قیمت پایه" type="number" value="<%= data.formData ? data.formData['product_price'] : data.product.productPrice %>">
+                                    </div>
+
+                                    <!-- Discounted Price -->
+                                    <div class="mb-3 col-md-4 mb-0">
+                                        <label class="form-label" for="ecommerce-product-discount-price">قیمت با تخفیف (تومان)</label>
+                                        <input aria-label="محصول قیمت با تخفیف" class="form-control" id="ecommerce-product-discount-price" name="product_discounted_price" placeholder="قیمت با تخفیف" type="number" value="<%= data.formData ? data.formData['product_discounted_price'] : data.product.productDiscountedPrice %>">
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Instock switch -->
+                            <div class="d-flex justify-content-start align-items-center pt-3">
+                                <h6 class="mb-0 me-3">موجود در انبار</h6>
+                                <div class="w-25 d-flex justify-content-start">
+                                    <label class="switch switch-primary switch-sm me-4 pe-2">
+                                        <input <%= data.product.stockAvailable ? "checked" : "" %> class="switch-input" type="checkbox" name="stock_available">
+                                        <span class="switch-toggle-slider">
+                                            <span class="switch-on">
+                                                <span class="switch-off"></span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /Second column --> <!-- Second column -->
+                <div class="col-12 col-lg-4">
+
+                    <!-- Media -->
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 card-title">
+                                تصویر محصول
+                            </h5>
+                            <span>
+                                فقط تصویر با فرمت JPG و PNG مجاز است
+                            </span>
+                        </div>
+                        <div class="card-body d-flex justify-content-center">
+                            <input type="file" accept=".jpg, .jpeg, .png" id="file-upload" class="d-none" name="image"> 
+                            <img src="/../../../products/images/<%= data.product.images.image_500x500 %>" alt="تصویر محصول را انتخاب نمایید" id="file-preview" class="dropzone needsclick dz-clickable text-center" onerror="this.src='/../../assets/img/denooj/image-up.svg'">
+                        </div>
+                    </div>
+                    <!-- /Media -->
+
+                    <!-- product SEO Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-tile mb-0">اطلاعات سئوی محصول</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="product-meta-title">
+                                    عنوان متا
+                                </label>
+                                <input aria-label="عنوان متا" class="form-control" id="product-meta-title" name="meta_title" placeholder="عنوان متا را وارد نمایید" type="text" value="<%= data.formData ? data.formData['meta_title'] : data.product.metaTitle %>" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="product-meta-description">
+                                    توضیحات متا
+                                </label>
+                                <textarea class="form-control" id="product-meta-description" name="meta_description" rows="3" placeholder="توضیحات متای مربوط به سئوی محصول را وارد نمایید"><%= data.formData ? data.formData['meta_description'] : data.product.metaDescription %></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="product-meta-keywords">
+                                    کلمات کلیدی سئو
+                                </label>
+                                <label class="form-label" for="product-meta-keywords">
+                                    (
+                                        کلمات کلیدی بایستی با کلمه به همراه ویرگول و فاصله اضافه گردد
+                                    )
+                                </label>
+                                <input aria-label="کلمات کلیدی" class="form-control" id="product-meta-keywords" name="meta_keywords" placeholder="برنج، چای، شمال" type="text" value="<%= data.formData ? data.formData['meta_keywords'] : data.product.metaKeywords %>" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product SEO Information -->
+                    
+                    <!-- /Pricing Card --> <!-- Organize Card -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">جزئیات</h5>
+                        </div>
+                        <div class="card-body">
+                        
+                            <!-- Category -->
+                            <div class="mb-3 col ecommerce-select2-dropdown">
+                                <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="category-org">
+                                    <span>دسته</span>
+                                    <a class="fw-medium" href="javascript:void(0);">اضافه کردن دسته جدید</a>
+                                </label>
+                                <% if(data.categories.length !== 0) { %>
+                                    <select class="form-select" id="user-type-dropdown" name="category_id">
+                                        <% if(data.categories.length !== 0) { %>
+                                            <% data.categories.forEach(function(category) { %>
+                                                <option <%= (data.product.category != null) 
+                                                && (category._id.toString().trim() == data.product.category._id.toString().trim() 
+                                                ? 'selected' : '') %> value="<%= category._id %>">
+                                                    <%= category.categoryTitle %>
+                                                </option>   
+                                            <% }) %>
+                                        <% } %>
+                                    </select>
+                                <% } else { %>
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <span class="alert-icon text-warning me-2">
+                                            <i class="ti ti-alert-triangle"></i>
+                                        </span>
+                                        هیچ دسته بندی یافت نشد! لطفا قبل از ایجاد محصول ابتدا یک دسته بندی در سامانه تعریف نمایید.
+                                    </div>
+                                <% } %>    
+                            </div>
+                        
+                            <!-- Status -->
+                            <div class="mb-3 col ecommerce-select2-dropdown">
+                                <label class="form-label mb-1" for="status-org">وضعیت</label>
+                                <select class="select2 form-select" data-placeholder="وضعیت انتشار" id="status-org" name="status">
+                                    <option <%= data.product.productStatus == true ? "selected" : "" %> value="published">منتشر شده</option>
+                                    <option <%= data.product.productStatus == false ? "selected" : "" %> value="inactive">غیر فعال</option>
+                                </select>
+                            </div>
+
+                            <!-- Different types of products switches, for home page -->
+                            <div class="border-top pt-3">
+                                <!-- Recommended product switch -->
+                                <div class="d-flex align-items-center pt-3">
+                                    <h6 class="mb-0 me-2">
+                                        محصول پیشنهادی
+                                    </h6>
+                                    <div class="">
+                                        <label class="switch switch-primary switch-sm me-4 pe-2">
+                                            <input class="switch-input" type="checkbox" name="recommendedProduct" <%= data.product.recommendedProduct ? "checked" : "" %>>
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">
+                                                    <span class="switch-off"></span>
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Recommended product switch -->
+                                <div class="d-flex align-items-center pt-3">
+                                    <h6 class="mb-0 me-2">
+                                        محصول شمال
+                                    </h6>
+                                    <div class="">
+                                        <label class="switch switch-primary switch-sm me-4 pe-2">
+                                            <input class="switch-input" type="checkbox" name="northProduct" <%= data.product.northProduct ? "checked" : "" %>>
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">
+                                                    <span class="switch-off"></span>
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Recommended product switch -->
+                                <div class="d-flex align-items-center pt-3">
+                                    <h6 class="mb-0 me-2">
+                                        محصول اقتصادی
+                                    </h6>
+                                    <div class="">
+                                        <label class="switch switch-primary switch-sm me-4 pe-2">
+                                            <input class="switch-input" type="checkbox" name="economyProduct" <%= data.product.economyProduct ? "checked" : "" %>>
+                                            <span class="switch-toggle-slider">
+                                                <span class="switch-on">
+                                                    <span class="switch-off"></span>
+                                                </span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                    <!-- /Organize Card -->
+                </div>
+                <!-- /Second column -->
+            </div>
+
+        </form>
+    </div>
+</div>
+<!-- / Content -->
+
+<script>
+    (function () {
+        const fullToolbar = [
+            [
+            {
+                font: []
+            },
+            {
+                size: []
+            }
+            ],
+            ['bold', 'italic', 'underline', 'strike'],
+            [
+            {
+                color: []
+            },
+            {
+                background: []
+            }
+            ],
+            [
+            {
+                script: 'super'
+            },
+            {
+                script: 'sub'
+            }
+            ],
+            [
+            {
+                header: '1'
+            },
+            {
+                header: '2'
+            },
+            'blockquote',
+            'code-block'
+            ],
+            [
+            {
+                list: 'ordered'
+            },
+            {
+                list: 'bullet'
+            },
+            {
+                indent: '-1'
+            },
+            {
+                indent: '+1'
+            }
+            ],
+            [{ direction: 'rtl' }],
+            ['link', 'image', 'video', 'formula'],
+            ['clean']
+        ];
+        const fullEditorShort = new Quill('#full-editor-short-desc', {
+            bounds: '#full-editor-short-desc',
+            placeholder: 'جزئیات محصول را وارد نمایید',
+            modules: {
+                formula: true,
+                toolbar: fullToolbar
+            },
+            theme: 'snow'
+        });
+        const fullEditorLong = new Quill('#full-editor-long-desc', {
+            bounds: '#full-editor-long-desc',
+            placeholder: 'توضیحات کامل محصول را وارد نمایید',
+            modules: {
+                formula: true,
+                toolbar: fullToolbar
+            },
+            theme: 'snow'
+        });
+
+        // set value after failed validation and also first page load
+        fullEditorShort.setContents(JSON.parse($('#full_editor_short_desc_hidden_input').val()));
+        fullEditorLong.setContents(JSON.parse($('#full_editor_long_desc_hidden_input').val()));
+       
+        // here get data from hidden inputs
+        $('#btn-submit').on('click', () => { 
+            // Copy HTML content in hidden form
+            $('#full_editor_short_desc_hidden_input').val((JSON.stringify(fullEditorShort.getContents())));
+            $('#full_editor_long_desc_hidden_input').val(JSON.stringify(fullEditorLong.getContents()));
+
+           // Post form
+           $('#productSubmitForm').submit();
+        });
+    })();
+
+    // show image after selection
+    const previewPhoto = () => {
+        const file = input.files;
+        if (file) {
+            const fileReader = new FileReader();
+            const preview = document.getElementById('file-preview');
+            fileReader.onload = event => {
+                preview.setAttribute('src', event.target.result);
+            }
+            fileReader.readAsDataURL(file[0]);
+        }
+    }
+
+    const input = document.getElementById('file-upload');
+    input.addEventListener('change', previewPhoto);
+
+    document.getElementById('file-preview').addEventListener('click', e => {
+        input.click();
+    });
+    
+</script>

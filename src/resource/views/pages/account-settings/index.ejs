@@ -1,0 +1,255 @@
+<!-- Content -->
+<div class="container container-p-y">
+
+    <% if(data.success != '') { %>
+        <div class="alert alert-success" role="alert">
+            <%= data.success %>
+        </div>
+    <% } %>   
+
+    <% if(data.errors.length != 0) { %>
+        <% data.errors.forEach(function(error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>    
+        <% }) %>
+    <% } %>
+
+    <% if(data.errorSingleMessage != '') { %>
+        <div class="alert alert-danger" role="alert">
+            <%= data.errorSingleMessage %>
+        </div>
+    <% } %>   
+
+    <!-- Navbar pills -->
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+                <li class="nav-item"> 
+                    <a class="nav-link <%= data.url == '/profile' ? 'active' : '' %>" href="profile">
+                        <i class="ti-xs ti ti-user-check me-1"></i>
+                        پروفایل من
+                    </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= data.url == '/account-settings' ? 'active' : '' %>" href="account-settings">
+                        <i class="ti ti-settings me-2 ti-sm"></i>
+                        تنظیمات حساب کاربری
+                    </a> 
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/ Navbar pills -->
+    
+    <!-- User Profile Content -->
+    <div class="row">
+
+        <div class="col-md-12">
+            <!-- About User -->
+            <div class="card mb-4">
+                <h5 class="card-header">جزئیات پروفایل</h5>
+                <div class="card-body">
+                    <form id="formAccountSettings" method="POST" action="/admin/account-settings/user-profile/update/<%= data.user._id %>?_method=PUT" novalidate="novalidate" encType="multipart/form-data">
+
+                        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                      
+                        <!-- Account -->
+                        <div class="card-body">
+                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                <img alt="کاربر-آواتار" class="d-block w-px-100 h-px-100 rounded" id="uploadedAvatar" src="<%= data.user.avatar !== null ? '/../../../profile/user-avatars/' + data.user.avatar : '/../../assets/img/denooj/user.png' %>">
+                                <div class="button-wrapper">
+                                    <label class="btn btn-primary me-2 mb-3 waves-effect waves-light" for="upload" tabindex="0">
+                                        <span class="d-none d-sm-block">بارگذاری تصویر پروفایل</span>
+                                        <i class="ti ti-upload d-block d-sm-none"></i>
+                                        <input accept="image/png, image/jpeg" class="account-file-input" hidden="" id="upload" type="file" name="avatar">
+                                    </label>
+                                    <!-- <button class="btn btn-label-secondary account-image-reset mb-3 waves-effect" type="button">
+                                        <i class="ti ti-refresh-dot d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">حذف عکس</span>
+                                    </button> -->
+                                    <div class="text-muted">حداکثر 5 مگابایت و با فرمت png , jpeg , jpg</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                                <label class="form-label" for="firstName">نام</label>
+                                <input autofocus="" class="form-control" id="firstName" name="firstname" type="text" value="<%= data.user.firstname %>">
+                            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                            <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                                <label class="form-label" for="lastName">نام خانوادگی</label>
+                                <input class="form-control" id="lastName" name="lastname" type="text" value="<%= data.user.lastname %>">
+                            <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="emailAddress">ایمیل</label>
+                                <input class="form-control" id="emailAddress" name="emailAddress" placeholder="ایمیل" type="text" value="<%= typeof data.user.emailAddress != 'undefined' ? data.user.emailAddress : '' %>">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phoneNumber">شماره تلفن</label>
+                                <div class="input-group input-group-merge">
+                                    <input disabled class="form-control ltr" id="phoneNumber" placeholder="910 000 0000" type="text" value="<%= data.user.phone %>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary me-2 waves-effect waves-light" type="submit">ذخیره تغییرات</button>
+                            <a href="/admin/dashboard" class="btn btn-label-secondary waves-effect" type="reset">لغو</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /Account -->
+            </div>
+            <!--/ About User -->
+        </div>
+
+        <!-- Change Password -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">تغییر رمز عبور</h5>
+                <div class="card-body">
+                    <form id="formAccountSettings" method="POST" action="/admin/account-settings/user-password/update/<%= data.user._id %>?_method=PUT" novalidate="novalidate">
+
+                        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6 form-password-toggle fv-plugins-icon-container">
+                                <label class="form-label" for="currentPassword">رمز عبور فعلی</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <input class="form-control" id="currentPassword" name="currentPassword" placeholder="············" type="password" value="<%= data.formData ? data.formData['currentPassword'] : '' %>">
+                                    <span class="input-group-text cursor-pointer"></span>
+                                </div>
+                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6 form-password-toggle fv-plugins-icon-container">
+                                <label class="form-label" for="newPassword">رمز عبور جدید</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <input class="form-control" id="newPassword" name="newPassword" placeholder="············" type="password" value="<%= data.formData ? data.formData['newPassword'] : '' %>">
+                                    <span class="input-group-text cursor-pointer">
+                                        <i class="ti ti-eye-off"></i>
+                                    </span>
+                                </div>
+                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-md-6 form-password-toggle fv-plugins-icon-container">
+                                <label class="form-label" for="confirmPassword">تأیید رمز عبور جدید</label>
+                                <div class="input-group input-group-merge has-validation">
+                                    <input class="form-control" id="confirmPassword" name="confirmPassword" placeholder="············" type="password" value="<%= data.formData ? data.formData['confirmPassword'] : '' %>">
+                                    <span class="input-group-text cursor-pointer">
+                                        <i class="ti ti-eye-off"></i>
+                                    </span>
+                                </div><div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <h6>
+                                    بهتر است رمز عبور موارد زیر را داشته باشد:                                    
+                                </h6>
+                                <ul class="ps-3 mb-0">
+                                    <li class="mb-1">حداقل 8 کارکتر</li>
+                                    <li class="mb-1">حداقل یک حرف کوچک</li>
+                                    <li>حداقل یک عدد یا نماد خاص</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary me-2 waves-effect waves-light" type="submit">بروزرسانی رمز</button>
+                                <a href="/admin/dashboard" class="btn btn-label-secondary waves-effect" type="reset">لغو</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/ Change Password -->
+
+        <!-- Change phone number -->
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">
+                    تغییر شماره تلفن
+                </h5>
+                <div class="card-body">
+                    <form class="needs-validation mb-4" method="POST" action="/admin/account-settings/user-phone/update/<%= data.user._id %>?_method=PUT" novalidate="">
+
+                        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                        
+                        <!-- <div class="mb-3 col-md-6">
+                            <label class="form-label" for="phone">شماره تلفن</label>
+                            <span class="text-danger">*</span>
+                            <div class="input-group" dir="ltr">
+                                <span class="input-group-text rounded-0 rounded-end" id="basic-addon11">0</span>
+                                <input autofocus class="form-control rounded-0 rounded-start phone-number-input" name="phone" id="phone" placeholder="910 000 0000" type="number" value="<%= data.formData ? data.formData['phone'] : '' %>" />
+                            </div>
+                        </div> -->
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="d-flex input-group flex-row">
+                                    <!-- <input class="form-control" type="phone" placeholder="910 000 0000" name="phone" value="<%= data.user.phone %>" dir="ltr"> -->
+                                    <div class="input-group" dir="ltr">
+                                        <span class="input-group-text rounded-0 rounded-end" id="basic-addon11">0</span>
+                                        <input autofocus class="form-control rounded-0 rounded-start phone-number-input" name="phone" id="phone" placeholder="910 000 0000" type="number" value="<%= data.user.phone %>" />
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <h5>
+                            ورود دو مرحله ای
+                        </h5>
+                        <p class="w-75"> احراز هویت دو مرحله ای با ارسال پیامک، یک لایه امنیتی اضافی به حساب شما اضافه می کند.</p>
+                
+                        <div class="form-check form-switch mt-2 mb-4">
+                            <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" name="twoFactorAuth" <%= data.user.twoFactorAuth ? "checked" : "" %> >
+                            <label class="form-check-label" for="flexSwitchCheckDefault">
+                                وضعیت ورود دو مرحله ای
+                            </label>
+                        </div>
+                
+                        <div>
+                            <button class="btn btn-primary me-2 waves-effect waves-light" type="submit">ذخیره</button>
+                            <a href="/admin/dashboard" class="btn btn-label-secondary waves-effect" type="reset">لغو</a>
+                        </div>
+                    </form>    
+                </div>        
+            </div>
+        </div>
+        <!--/ Change phone number -->
+
+    </div>
+    <!--/ User Profile Content -->
+    
+</div>
+<!-- / Content -->
+
+<script>
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function (e) {
+        (function () {
+            const formAccSettings = document.querySelector('#formAccountSettings');
+
+            // Update/reset user image of account page
+            let accountUserImage = document.getElementById('uploadedAvatar');
+            const fileInput = document.querySelector('.account-file-input'),
+            resetFileInput = document.querySelector('.account-image-reset');
+
+            if (accountUserImage) {
+            const resetImage = accountUserImage.src;
+            fileInput.onchange = () => {
+                if (fileInput.files[0]) {
+                accountUserImage.src = window.URL.createObjectURL(fileInput.files[0]);
+                }
+            };
+            resetFileInput.onclick = () => {
+                fileInput.value = '';
+                accountUserImage.src = resetImage;
+            };
+            }
+        })();
+    });
+</script>
+

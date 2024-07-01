@@ -1,0 +1,77 @@
+<!-- Content -->
+<div class="container container-p-y">
+    
+    <!-- Navbar pills -->
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-pills flex-column flex-sm-row mb-4">
+                <li class="nav-item"> 
+                    <a class="nav-link <%= data.url == '/profile' ? 'active' : '' %>" href="profile">
+                        <i class="ti-xs ti ti-user-check me-1"></i>
+                        پروفایل من
+                    </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= data.url == '/account-settings' ? 'active' : '' %>" href="account-settings">
+                        <i class="ti ti-settings me-2 ti-sm"></i>
+                        تنظیمات حساب کاربری
+                    </a> 
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/ Navbar pills -->
+    
+    
+    <!-- User Profile Content -->
+    <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-5">
+            <!-- About User -->
+            <div class="card mb-4">
+                <div class="card-body"> 
+                    <small class="card-text text-uppercase">
+                    درباره حساب کاربری
+                    </small>
+                    <ul class="list-unstyled mb-4 mt-3">
+                        <li class="d-flex align-items-center mb-3"> 
+                            <i class="ti ti-user text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">نام کامل:</span> 
+                            <span>
+                                <%= data.user.firstname %> <%= data.user.lastname %>
+                            </span>        
+                        </li>
+                        <li class="d-flex align-items-center mb-3"> 
+                            <i class="ti ti-crown text-heading"></i>
+                            <span class="fw-medium mx-2 text-heading">نقش:</span> 
+                            <span>
+                                مدیر
+                            </span>                                                
+                        </li>
+                        <li class="d-flex align-items-center mb-3"> 
+                            <i class="ti ti-phone-call"></i>
+                            <span class="fw-medium mx-2 text-heading">تلفن:</span> 
+                            <span>
+                                <%= data.user.phone %>
+                            </span>                                                
+                        </li>
+
+                        <% if(typeof data.user.emailAddress != 'undefined') { %>
+                            <li class="d-flex align-items-center mb-3"> 
+                                <i class="ti ti-mail"></i>
+                                <span class="fw-medium mx-2 text-heading">پست الکترونیکی:</span> 
+                                <span>
+                                    <%= data.user.emailAddress %>
+                                </span>                                                
+                            </li>
+                        <% } %>
+                    </ul> 
+                </div>
+            </div>
+            <!--/ About User -->
+        </div>
+    </div>
+    <!--/ User Profile Content -->
+    
+</div>
+<!-- / Content -->
+

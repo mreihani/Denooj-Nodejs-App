@@ -1,0 +1,126 @@
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="py-3 mb-0">
+        <span class="text-muted fw-light">مدیرت فروشگاه /</span>
+        لیست سفارشات
+    </h4>
+    <div class="">
+        <div class="card">
+            <div class="card-header flex-column flex-md-row">
+                <div class="head-label text-center"></div>
+                
+                <div class="row">
+                    <div class="col-md-5 d-flex justify-content-start">
+                        <form method="GET" action="/admin/orders/search">
+                            <div class="input-group">
+                                <button class="btn btn-outline-primary waves-effect" id="button-addon1" type="submit">
+                                    <i class="ti ti-search h-mirror me-1"></i>
+                                    جستجو
+                                </button>
+                                <input aria-describedby="button-addon1" class="form-control" placeholder="" type="search" name="q" value="<%= data.search %>">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-7 d-flex justify-content-md-end">
+                        <a href="/admin/orders" class="text-white btn btn-primary waves-effect waves-light">
+                            <i class="ti ti-arrow-back me-sm-1"></i> 
+                            بازگشت به لیست سفارشات
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-datatable table-responsive pt-0">
+                <table class="datatables-direct-basic table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ردیف
+                            </th>
+                            <th>
+                                شماره سفارش
+                            </th>
+                            <th>
+                                نام کاربر
+                            </th>
+                            <th>
+                                شماره تماس
+                            </th>
+                            <th>
+                                وضعیت سفارش
+                            </th>
+                            <th>
+                                عملیات
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data.orders) { %>
+                            <% data.orders.forEach(function(order, index) { %>
+                               
+                                    <tr>
+                                        <td>
+                                            <bdi>
+                                                <%= index + 1 %>
+                                            </bdi>
+                                        </td>
+                                        <td>
+                                            <bdi>
+                                                <%= order.orderNumber %>
+                                            </bdi>
+                                        </td>
+                                        <td>
+                                            <bdi>
+                                                <%= order.userDetails[0].firstname %> <%= order.userDetails[0].lastname %>
+                                            </bdi>
+                                        </td>
+                                        <td>
+                                            <a href="tel: 0<%= order.userDetails[0].phone %>">
+                                                0<%= order.userDetails[0].phone %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <% if(order.status == 'preparation') { %>
+                                                در حال پردازش
+                                            <% } else if(order.status == 'posted') { %>
+                                                تحویل شده
+                                            <% } else if(order.status == 'cancelled') { %>
+                                                لغو شده
+                                            <% } else if(order.status == 'returned') { %>
+                                                مرجوع شده
+                                            <% } %>
+                                        </td>
+                                        <td>
+                                            <form action="/admin/order/destroy/<%= order._id %>?_method=DELETE" method="post">
+
+                                                <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                                
+                                                <a href="/admin/order/<%= order._id %>" class="btn btn-sm btn-icon item-eye">
+                                                    <i class="text-primary ti ti-eye"></i>
+                                                </a>
+                                                <button type="submit" class="btn btn-sm btn-icon item-edit" onclick="return confirm('آیا برای انجام این کار اطمینان دارید؟')">
+                                                    <i class="text-primary ti ti-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                              
+                            <% }); %> 
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <%- include(('../../layouts/pagination'), {pagination: data.orders}) %>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+
+<style>
+    .table-responsive {
+        overflow-x: hidden;
+    }
+</style>
+

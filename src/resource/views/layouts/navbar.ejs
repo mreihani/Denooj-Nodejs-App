@@ -1,0 +1,65 @@
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="ti ti-menu-2 ti-sm"></i>
+        </a>
+    </div>
+    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+        <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <!-- User -->
+            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown" href="javascript:void(0);">
+                    <div class="avatar avatar-online">
+                        <img alt class="h-auto rounded-circle" src="<%= data.user.avatar !== null ? '/../../../profile/user-avatars/' + data.user.avatar : '/../../assets/img/denooj/user.png' %>"/>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar avatar-online">
+                                        <img alt class="h-auto rounded-circle" src="<%= data.user.avatar !== null ? '/../../../profile/user-avatars/' + data.user.avatar : '/../../assets/img/denooj/user.png' %>"/>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <span class="fw-semibold d-block mb-1">
+                                        <%= data.user.firstname %> <%= data.user.lastname %>
+                                    </span>
+                                    <small class="text-muted">مدیرکل</small>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/admin/profile">
+                            <i class="ti ti-user-check me-2 ti-sm"></i>
+                            <span class="align-middle">پروفایل من</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/admin/account-settings">
+                            <i class="ti ti-settings me-2 ti-sm"></i>
+                            <span class="align-middle">
+                                تنظیمات حساب کاربری
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/admin/logout">
+                            <i class="ti ti-logout me-2 ti-sm"></i>
+                            <span class="align-middle">خروج از حساب</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--/ User -->
+        </ul>
+    </div>
+</nav>

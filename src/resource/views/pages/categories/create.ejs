@@ -1,0 +1,88 @@
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <% if(data.success != '') { %>
+        <div class="alert alert-success" role="alert">
+            <%= data.success %>
+        </div>
+    <% } %>  
+
+    <h4 class="py-3 mb-0">
+        <span class="text-muted fw-light">مدیرت دسته بندی ها /</span>
+        افزودن دسته بندی
+    </h4>
+    <div class="">
+
+        <!-- Add Product -->
+        <div class="row">
+
+            <!-- First column-->
+            <div class="col-lg-12">
+
+                <!-- Product Information -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-tile mb-0">اطلاعات دسته بندی</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <% if(data.errors.length != 0) { %>
+                            <% data.errors.forEach(function(error) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= error %>
+                                </div>    
+                            <% }) %>
+                        <% } %>
+
+                        <form id="formAccountSettings" method="POST" action="/admin/category/store/" novalidate="novalidate">
+
+                            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                            
+                            <div class="row">
+                                <div class="mb-3 col-md-12 fv-plugins-icon-container">
+                                    <label class="form-label" for="categoryTitle">عنوان دسته بندی</label>
+                                    <span class="text-danger">*</span>
+                                    <input autofocus="" class="form-control" id="categoryTitle" name="category_title" type="text" placeholder="عنوان دسته بندی را وارد نمایید" value="<%= data.formData ? data.formData['category_title'] : '' %>">
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="user-type-dropdown">
+                                            دسته بالاتر
+                                        </label>
+                                        <span class="text-danger">*</span>
+                                        <select class="form-select" id="user-type-dropdown" name="category_parent">
+                                            <option disabled>
+                                                دسته بالاتر را انتخاب نمایید
+                                            </option>
+                                            <option selected value="0">
+                                                دسته اصلی
+                                            </option>
+                                            <% if(data.categories.length != 0) { %>
+                                                <% data.categories.forEach(function(category) { %>
+                                                    <option value="<%= category._id %>">
+                                                        <%= category.categoryTitle %>
+                                                    </option>   
+                                                <% }) %>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-2">
+                                <button class="btn btn-primary me-2 waves-effect waves-light" type="submit">ذخیره</button>
+                                <a href="/admin/category/index" class="btn btn-label-secondary waves-effect" type="reset">لغو</a>
+                            </div>
+                        </form>
+                </div>
+                <!-- /Product Information -->
+
+            </div>
+         
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+
+

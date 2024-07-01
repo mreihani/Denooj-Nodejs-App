@@ -1,0 +1,145 @@
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <% if(data.success != '') { %>
+        <div class="alert alert-success" role="alert">
+            <%= data.success %>
+        </div>
+    <% } %>   
+
+    <% if(data.errorSingleMessage != '') { %>
+        <div class="alert alert-danger" role="alert">
+            <%= data.errorSingleMessage %>
+        </div>
+    <% } %>   
+
+    <h4 class="py-3 mb-0">
+        <span class="text-muted fw-light">مدیرت فروشگاه /</span>
+        لیست محصولات
+    </h4>
+    <div class="">
+        <div class="card">
+            <div class="card-header flex-column flex-md-row">
+                <div class="head-label text-center"></div>
+                
+                <div class="row">
+                    <div class="col-md-5 d-flex justify-content-start">
+                        <form method="GET" action="/admin/product/search">
+                            <div class="input-group">
+                                <button class="btn btn-outline-primary waves-effect" id="button-addon1" type="submit">
+                                    <i class="ti ti-search h-mirror me-1"></i>
+                                    جستجو
+                                </button>
+                                <input aria-describedby="button-addon1" class="form-control" placeholder="" type="search" name="q">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-7 d-flex justify-content-md-end">
+                        <a href="/admin/product/create" class="text-white btn btn-primary">
+                            افزودن محصول
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-datatable table-responsive pt-0">
+                <table class="datatables-direct-basic table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ردیف
+                            </th>
+                            <th>
+                                نام محصول
+                            </th>
+                            <th>
+                                قیمت
+                            </th>
+                            <th>
+                                وضعیت موجودی محصول
+                            </th>
+                            <th>
+                                وضعیت محصول
+                            </th>
+                            <th>
+                                عملیات
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data.products.docs) { %>
+                            <% data.products.docs.forEach(function(product, index) { %>
+                                <tr>
+                                    <td>
+                                        <bdi>
+                                            <%= (data.products.page -1) * data.products.limit + (index + 1) %>
+                                        </bdi>
+                                    </td>
+                                    <td>
+                                        <a href="/product/<%= product.productSlug %>">
+                                            <%= product.productTitle %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= product.productPrice %>
+                                        تومان
+                                    </td>
+                                    <td>
+                                        <% if (product.stockAvailable) { %>
+                                            <span class="badge bg-label-success">
+                                                موجود در انبار
+                                            </span>
+                                        <% } else { %>
+                                            <span class="badge bg-label-warning">
+                                                ناموجود
+                                            </span>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <% if (product.productStatus) { %>
+                                            <span class="badge bg-label-success">
+                                                منتشر شده
+                                            </span>
+                                        <% } else { %>
+                                            <span class="badge bg-label-warning">
+                                                غیر فعال
+                                            </span>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <form action="/admin/product/destroy/<%= product._id %>?_method=DELETE" method="post">
+
+                                            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                            
+                                            <a href="/admin/product/<%= product._id %>/edit" class="btn btn-sm btn-icon item-edit">
+                                                <i class="text-primary ti ti-pencil"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-icon item-edit" onclick="return confirm('آیا برای انجام این کار اطمینان دارید؟')">
+                                                <i class="text-primary ti ti-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            <% }); %> 
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <%- include(('../../layouts/pagination'), {pagination: data.products}) %>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+
+<style>
+    .table-responsive {
+        overflow-x: hidden;
+    }
+</style>
+
+
+<script>
+    
+</script>

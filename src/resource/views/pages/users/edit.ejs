@@ -1,0 +1,130 @@
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <% if(data.success != '') { %>
+        <div class="alert alert-success" role="alert">
+            <%= data.success %>
+        </div>
+    <% } %>   
+
+    <h4 class="py-3 mb-0">
+        <span class="text-muted fw-light">مدیرت کاربران /</span>
+        ویرایش کاربر
+    </h4>
+
+    <div class="">
+
+        <!-- Add Product -->
+        <div class="row">
+
+            <!-- First column-->
+            <div class="col-lg-12">
+
+                <!-- Product Information -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-tile mb-0">اطلاعات کاربر</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formAccountSettings" method="POST" action="/admin/user/update/<%= data.user._id %>?_method=PUT" class="fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+                            
+                            <% if(data.errors.length != 0) { %>
+                                <% data.errors.forEach(function(error) { %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>    
+                                <% }) %>
+                            <% } %>
+
+                            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                          
+                            <div class="row">
+                                <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                                    <label class="form-label" for="firstName">نام</label>
+                                    <span class="text-danger">*</span>
+                                    <input autofocus="" class="form-control" id="firstName" name="firstname" type="text" value="<%= data.formData ? data.formData['firstname'] : data.user.firstname %>" placeholder="نام کاربر را وارد نمایید">
+                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                                <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                                    <label class="form-label" for="lastName">نام خانوادگی</label>
+                                    <span class="text-danger">*</span>
+                                    <input class="form-control" id="lastName" name="lastname" type="text" value="<%= data.formData ? data.formData['lastname'] : data.user.lastname %>" placeholder="نام خانوادگی کاربر را وارد نمایید">
+                                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div></div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="emailAddress">ایمیل</label>
+                                    <span class="text-danger">*</span>
+                                    <input class="form-control" id="emailAddress" name="emailAddress" placeholder="example@gmail.com" type="text" value="<%= data.formData ? data.formData['emailAddress'] : data.user.emailAddress %>">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="phoneNumber">شماره تلفن</label>
+                                    <span class="text-danger">*</span>
+                                    <div class="input-group" dir="ltr">
+                                        <span class="input-group-text rounded-0 rounded-end" id="basic-addon11">0</span>
+                                        <input autofocus class="form-control rounded-0 rounded-start phone-number-input" name="phone" id="phoneNumber" placeholder="910 000 0000" type="number" value="<%= data.formData ? data.formData['phone'] : data.user.phone %>" />
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="user-type-dropdown">
+                                            نوع کاربر را تعیین نمایید
+                                        </label>
+                                        <span class="text-danger">*</span>
+                                        <select class="form-select" id="user-type-dropdown" name="isAdmin">
+                                            <option selected disabled>
+                                                نوع کاربر را انتخاب نمایید
+                                            </option>
+                                            <option <%= data.user.isAdmin ? 'selected' : '' %> value="1">
+                                                مدیر کل
+                                            </option>
+                                            <option <%= !data.user.isAdmin ? 'selected' : '' %> value="2">
+                                                خریدار
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md-12 d-none" id="password-field">
+                                    <label class="form-label" for="password">رمز عبور (کاربر مدیر)</label>
+                                    <div class="input-group input-group-merge has-validation">
+                                        <input class="form-control" id="password" name="password" placeholder="············" type="password" value="<%= data.user.isAdmin ? 'password0' : '' %>">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-primary me-2 waves-effect waves-light" type="submit">ذخیره</button>
+                                <a href="/admin/user/index" class="btn btn-label-secondary waves-effect" type="reset">لغو</a>
+                            </div>
+                        </form>
+                </div>
+                <!-- /Product Information -->
+
+            </div>
+         
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+
+<script>
+    const passwordField = $('#password-field');
+    const userRoleDropDownElement = $('#user-type-dropdown');
+
+    if(userRoleDropDownElement.val() == 1) {
+        passwordField.removeClass('d-none');
+    } else {
+        passwordField.addClass('d-none');
+    }
+
+    $(userRoleDropDownElement).on('change', userRoleDropDownElement, function(e) {
+        let userTypeId = e.target.value;
+        
+        if(userTypeId == 1) {
+            passwordField.removeClass('d-none');
+            $('#password').val('');
+        } else {
+            passwordField.addClass('d-none');
+        }
+    });
+</script>
+
