@@ -83,7 +83,7 @@ export const getAliveCodeForUser :any = async(id :string) => {
     let now = new Date();
     let user = await UserModel.findById(id).populate({
         path: 'activeCode',
-        match: { expiredAt: { $gte: now.toISOString() } },
+        match: { expiredAt: {$gte: now.toISOString()} },
     }).exec();
 
     // @ts-ignore
