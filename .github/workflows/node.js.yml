@@ -20,7 +20,7 @@ jobs:
     - name: Git Config and Pull
       run: |
         chmod +x pull_script.sh
-        ./pull_script.s
+        ./pull_script.sh
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
