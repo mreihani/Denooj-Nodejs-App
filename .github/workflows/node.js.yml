@@ -25,5 +25,9 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm run build --if-present
+    - name: Run pull script (updated path)
+        run:|
+          chmod +x pull_script.sh
+          ./pull_script.s
     
     
