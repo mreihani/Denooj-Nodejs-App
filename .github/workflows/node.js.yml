@@ -17,7 +17,10 @@ jobs:
         
     steps:
     - uses: actions/checkout@v4
-   
+    - name: Git Config and Pull
+      run: |
+        chmod +x pull_script.sh
+        ./pull_script.s
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -25,9 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm run build --if-present
-    - name: Run pull script (updated path)
-        run:|
-          chmod +x pull_script.sh
-          ./pull_script.s
+    
+    
     
     
