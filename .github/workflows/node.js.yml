@@ -19,6 +19,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Git Config and Pull
       run: |
+        git config --global --add safe.directory /home/denooj/domains/denooj.com/app/denooj.com-backend-nodejs-app
         cd /home/denooj/domains/denooj.com/app/denooj.com-backend-nodejs-app
         git pull origin main
     - name: Use Node.js ${{ matrix.node-version }}
