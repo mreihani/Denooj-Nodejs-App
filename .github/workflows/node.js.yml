@@ -20,6 +20,7 @@ jobs:
     - name: Change directory and Git Pull
       run: |
         cd /home/denooj/domains/denooj.com/app/denooj.com-backend-nodejs-app
+        git config --global --add safe.directory /home/denooj/domains/denooj.com/app/denooj.com-backend-nodejs-app
         git pull
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
