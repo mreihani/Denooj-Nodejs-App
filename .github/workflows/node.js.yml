@@ -19,8 +19,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Git Config and Pull
       run: |
-        chmod +x pull_script.sh
-        ./pull_script.sh
+        cd /home/denooj/domains/denooj.com/app/denooj.com-backend-nodejs-app
+        git pull origin main
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
