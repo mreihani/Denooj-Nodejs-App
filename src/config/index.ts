@@ -22,6 +22,6 @@ module.exports = {
             maxAge: 5*24*3600*1000,
             sameSite: 'strict',
         }
-        
     }
+    
 };
