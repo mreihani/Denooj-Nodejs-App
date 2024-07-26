@@ -12,7 +12,7 @@ module.exports = {
             secure: false,
             httpOnly: true,
             maxAge: 5*24*3600*1000,
-            sameSite: 'strict',
+            sameSite: 'lax',
         },
         production: {
             domain: 'https://denooj.com', 
@@ -20,7 +20,7 @@ module.exports = {
             secure: true,
             httpOnly: true,
             maxAge: 5*24*3600*1000,
-            sameSite: 'lax',
+            sameSite: 'strict',
         }
     }
 };
