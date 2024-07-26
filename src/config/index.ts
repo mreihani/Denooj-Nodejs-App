@@ -20,7 +20,7 @@ module.exports = {
             secure: false,
             httpOnly: false,
             maxAge: 5*24*3600*1000,
-            sameSite: 'none',
+            // sameSite: 'none',
         }
     }
 };
