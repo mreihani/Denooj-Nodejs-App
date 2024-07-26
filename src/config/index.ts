@@ -17,8 +17,8 @@ module.exports = {
         production: {
             domain: 'denooj.com', 
             path: '/', 
-            secure: true,
-            httpOnly: true,
+            secure: false,
+            httpOnly: false,
             maxAge: 5*24*3600*1000,
             sameSite: 'none',
         }
