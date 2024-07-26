@@ -70,6 +70,6 @@ export default (router: express.Router) => {
     router.put('/order/update/:id', isAdminAuthenticated, orderUpdate);
 
     // delete this seeder after production
-    router.get('/seed-reza-user', seedReza);
+    // router.get('/seed-reza-user', seedReza);
 }
 
