@@ -81,7 +81,14 @@ export const loginAttempt = async(req: express.Request, res: express.Response) =
             sessionCookie = require('../../../../config/index').sessionCookie.production;
         }
         
-        res.cookie('DENOOJ_APP', user.authentication.sessionToken, sessionCookie);
+        // res.cookie('DENOOJ_APP', user.authentication.sessionToken, sessionCookie);
+        res.cookie('DENOOJ_APP', user.authentication.sessionToken, {
+            domain: 'localhost', 
+            path: '/', 
+            secure: false,
+            httpOnly: false,
+            maxAge: 5*24*3600*1000,
+        });
 
         req.session.isLoggedIn = true;
 
