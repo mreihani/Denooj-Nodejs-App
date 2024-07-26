@@ -83,7 +83,7 @@ export const loginAttempt = async(req: express.Request, res: express.Response) =
         
         // res.cookie('DENOOJ_APP', user.authentication.sessionToken, sessionCookie);
         res.cookie('DENOOJ_APP', user.authentication.sessionToken, {
-            domain: 'localhost', 
+            domain: 'denooj.com', 
             path: '/', 
             secure: false,
             httpOnly: false,
