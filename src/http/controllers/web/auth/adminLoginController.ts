@@ -80,7 +80,7 @@ export const loginAttempt = async(req: express.Request, res: express.Response) =
         } else if(ENVIRONMENT == 'production') {
             sessionCookie = require('../../../../config/index').sessionCookie.production;
         }
-        
+        console.log(sessionCookie);
         res.cookie('DENOOJ_APP', user.authentication.sessionToken, sessionCookie);
         // res.cookie('DENOOJ_APP', user.authentication.sessionToken, {
         //     domain: 'denooj.com', 
