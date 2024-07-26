@@ -69,7 +69,8 @@ export default class Application {
     }
 
     setConfig() {
-        expressApp.use(express.static('public'));
+        //expressApp.use(express.static('public'));
+        expressApp.use('/admin', express.static('public'));
         expressApp.set('view engine', 'ejs');
         expressApp.set('views', path.resolve('./src/resource/views'));
         expressApp.use(expressLayouts);
