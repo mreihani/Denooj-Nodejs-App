@@ -15,7 +15,7 @@ module.exports = {
             sameSite: 'none',
         },
         production: {
-            domain: 'https://denooj.com', 
+            domain: 'denooj.com', 
             path: '/', 
             secure: true,
             httpOnly: true,
