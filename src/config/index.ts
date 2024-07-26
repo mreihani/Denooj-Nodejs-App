@@ -12,7 +12,7 @@ module.exports = {
             secure: false,
             httpOnly: true,
             maxAge: 5*24*3600*1000,
-            sameSite: 'none',
+            sameSite: 'strict',
         },
         production: {
             domain: 'https://denooj.com', 
