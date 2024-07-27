@@ -43,6 +43,8 @@ if(ENVIRONMENT == 'development') {
         credentials: true,
     }
 }
+// Apply CORS middleware with options
+expressApp.use(cors(corsOptions));
 
 // set file upload
 expressApp.use(fileUpload());
