@@ -30,24 +30,19 @@ declare module "express-session" {
 const expressApp = express();
 
 // set cors
-// let corsOptions;
-// const ENVIRONMENT = process.env.NODE_ENV;
-// if(ENVIRONMENT == 'development') {
-//     corsOptions = {
-//         origin: "http://localhost:3000",
-//         credentials: true,
-//     }
-// } else if(ENVIRONMENT == 'production') {
-//     corsOptions = {
-//         origin: "https://denooj.com",
-//         credentials: true,
-//     }
-// }
-let corsOptions = {
-    origin: "http://localhost:3000",
-    credentials: true,
+let corsOptions;
+const ENVIRONMENT = process.env.NODE_ENV;
+if(ENVIRONMENT == 'development') {
+    corsOptions = {
+        origin: "http://localhost:3000",
+        credentials: true,
+    }
+} else if(ENVIRONMENT == 'production') {
+    corsOptions = {
+        origin: "https://denooj.com",
+        credentials: true,
+    }
 }
-expressApp.use(cors(corsOptions));
 
 // set file upload
 expressApp.use(fileUpload());
@@ -112,7 +107,7 @@ export default class Application {
             next();
         });
 
-        expressApp.use('/api', apiRouter());
+        expressApp.use('/admin/api', apiRouter());
         expressApp.use('/admin', webRouter());
     }
 }
