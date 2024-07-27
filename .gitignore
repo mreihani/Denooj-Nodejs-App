@@ -1,5 +1,5 @@
 node_modules
 .env
 /actions-runner
-/public/profile/
-/public/products/
+/public/profile
+/public/products
