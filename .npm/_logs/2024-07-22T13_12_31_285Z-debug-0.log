@@ -1,0 +1,799 @@
+0 verbose cli /home/denooj/actions-runner/nodejs/_tool/node/20.15.1/x64/bin/node /home/denooj/actions-runner/nodejs/_tool/node/20.15.1/x64/bin/npm
+1 info using npm@10.7.0
+2 info using node@v20.15.1
+3 silly config:load:file:/home/denooj/actions-runner/nodejs/_tool/node/20.15.1/x64/lib/node_modules/npm/npmrc
+4 silly config:load:file:/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/.npmrc
+5 silly config:load:file:/home/denooj/.npmrc
+6 silly config:load:file:/home/denooj/actions-runner/nodejs/_tool/node/20.15.1/x64/etc/npmrc
+7 verbose title npm i
+8 verbose argv "i"
+9 verbose logfile logs-max:10 dir:/home/denooj/.npm/_logs/2024-07-22T13_12_31_285Z-
+10 verbose logfile /home/denooj/.npm/_logs/2024-07-22T13_12_31_285Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly reify moves {}
+15 silly audit bulk request {
+15 silly audit   '@aws-crypto/ie11-detection': [ '3.0.0' ],
+15 silly audit   tslib: [ '1.14.1', '2.6.2' ],
+15 silly audit   '@aws-crypto/sha256-browser': [ '3.0.0' ],
+15 silly audit   '@aws-crypto/sha256-js': [ '3.0.0' ],
+15 silly audit   '@aws-crypto/supports-web-crypto': [ '3.0.0' ],
+15 silly audit   '@aws-crypto/util': [ '3.0.0' ],
+15 silly audit   '@aws-sdk/client-cognito-identity': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/client-sso': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/client-sso-oidc': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/client-sts': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/core': [ '3.576.0' ],
+15 silly audit   '@aws-sdk/credential-provider-cognito-identity': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-env': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-http': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-ini': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-node': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-process': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-sso': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-provider-web-identity': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/credential-providers': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/middleware-host-header': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/middleware-logger': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/middleware-recursion-detection': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/middleware-user-agent': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/region-config-resolver': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/token-providers': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/types': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/util-endpoints': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/util-locate-window': [ '3.568.0' ],
+15 silly audit   '@aws-sdk/util-user-agent-browser': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/util-user-agent-node': [ '3.577.0' ],
+15 silly audit   '@aws-sdk/util-utf8-browser': [ '3.259.0' ],
+15 silly audit   '@cspotcode/source-map-support': [ '0.8.1' ],
+15 silly audit   '@emnapi/runtime': [ '1.2.0' ],
+15 silly audit   '@img/sharp-darwin-arm64': [ '0.33.4' ],
+15 silly audit   '@img/sharp-darwin-x64': [ '0.33.4' ],
+15 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-linux-arm': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-linux-x64': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.0.2' ],
+15 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.0.2' ],
+15 silly audit   '@img/sharp-linux-arm': [ '0.33.4' ],
+15 silly audit   '@img/sharp-linux-arm64': [ '0.33.4' ],
+15 silly audit   '@img/sharp-linux-s390x': [ '0.33.4' ],
+15 silly audit   '@img/sharp-linux-x64': [ '0.33.4' ],
+15 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.33.4' ],
+15 silly audit   '@img/sharp-linuxmusl-x64': [ '0.33.4' ],
+15 silly audit   '@img/sharp-wasm32': [ '0.33.4' ],
+15 silly audit   '@img/sharp-win32-ia32': [ '0.33.4' ],
+15 silly audit   '@img/sharp-win32-x64': [ '0.33.4' ],
+15 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+15 silly audit   '@jridgewell/sourcemap-codec': [ '1.4.15' ],
+15 silly audit   '@jridgewell/trace-mapping': [ '0.3.9' ],
+15 silly audit   '@mongodb-js/saslprep': [ '1.1.7' ],
+15 silly audit   '@smithy/abort-controller': [ '3.0.0' ],
+15 silly audit   '@smithy/config-resolver': [ '3.0.0' ],
+15 silly audit   '@smithy/core': [ '2.0.1' ],
+15 silly audit   '@smithy/credential-provider-imds': [ '3.0.0' ],
+15 silly audit   '@smithy/fetch-http-handler': [ '3.0.1' ],
+15 silly audit   '@smithy/hash-node': [ '3.0.0' ],
+15 silly audit   '@smithy/invalid-dependency': [ '3.0.0' ],
+15 silly audit   '@smithy/is-array-buffer': [ '3.0.0' ],
+15 silly audit   '@smithy/middleware-content-length': [ '3.0.0' ],
+15 silly audit   '@smithy/middleware-endpoint': [ '3.0.0' ],
+15 silly audit   '@smithy/middleware-retry': [ '3.0.1' ],
+15 silly audit   uuid: [ '9.0.1', '10.0.0' ],
+15 silly audit   '@smithy/middleware-serde': [ '3.0.0' ],
+15 silly audit   '@smithy/middleware-stack': [ '3.0.0' ],
+15 silly audit   '@smithy/node-config-provider': [ '3.0.0' ],
+15 silly audit   '@smithy/node-http-handler': [ '3.0.0' ],
+15 silly audit   '@smithy/property-provider': [ '3.0.0' ],
+15 silly audit   '@smithy/protocol-http': [ '4.0.0' ],
+15 silly audit   '@smithy/querystring-builder': [ '3.0.0' ],
+15 silly audit   '@smithy/querystring-parser': [ '3.0.0' ],
+15 silly audit   '@smithy/service-error-classification': [ '3.0.0' ],
+15 silly audit   '@smithy/shared-ini-file-loader': [ '3.0.0' ],
+15 silly audit   '@smithy/signature-v4': [ '3.0.0' ],
+15 silly audit   '@smithy/smithy-client': [ '3.0.1' ],
+15 silly audit   '@smithy/types': [ '3.0.0' ],
+15 silly audit   '@smithy/url-parser': [ '3.0.0' ],
+15 silly audit   '@smithy/util-base64': [ '3.0.0' ],
+15 silly audit   '@smithy/util-body-length-browser': [ '3.0.0' ],
+15 silly audit   '@smithy/util-body-length-node': [ '3.0.0' ],
+15 silly audit   '@smithy/util-buffer-from': [ '3.0.0' ],
+15 silly audit   '@smithy/util-config-provider': [ '3.0.0' ],
+15 silly audit   '@smithy/util-defaults-mode-browser': [ '3.0.1' ],
+15 silly audit   '@smithy/util-defaults-mode-node': [ '3.0.1' ],
+15 silly audit   '@smithy/util-endpoints': [ '2.0.0' ],
+15 silly audit   '@smithy/util-hex-encoding': [ '3.0.0' ],
+15 silly audit   '@smithy/util-middleware': [ '3.0.0' ],
+15 silly audit   '@smithy/util-retry': [ '3.0.0' ],
+15 silly audit   '@smithy/util-stream': [ '3.0.1' ],
+15 silly audit   '@smithy/util-uri-escape': [ '3.0.0' ],
+15 silly audit   '@smithy/util-utf8': [ '3.0.0' ],
+15 silly audit   '@tsconfig/node10': [ '1.0.11' ],
+15 silly audit   '@tsconfig/node12': [ '1.0.11' ],
+15 silly audit   '@tsconfig/node14': [ '1.0.3' ],
+15 silly audit   '@tsconfig/node16': [ '1.0.4' ],
+15 silly audit   '@types/body-parser': [ '1.19.5' ],
+15 silly audit   '@types/busboy': [ '1.5.4' ],
+15 silly audit   '@types/compression': [ '1.7.5' ],
+15 silly audit   '@types/connect': [ '3.4.38' ],
+15 silly audit   '@types/connect-flash': [ '0.0.40' ],
+15 silly audit   '@types/cookie-parser': [ '1.4.7' ],
+15 silly audit   '@types/cors': [ '2.8.17' ],
+15 silly audit   '@types/csurf': [ '1.11.5' ],
+15 silly audit   '@types/dompurify': [ '3.0.5' ],
+15 silly audit   '@types/express': [ '4.17.21' ],
+15 silly audit   '@types/express-ejs-layouts': [ '2.5.4' ],
+15 silly audit   '@types/express-fileupload': [ '1.5.0' ],
+15 silly audit   '@types/express-serve-static-core': [ '4.19.0' ],
+15 silly audit   '@types/express-session': [ '1.18.0' ],
+15 silly audit   '@types/http-errors': [ '2.0.4' ],
+15 silly audit   '@types/lodash': [ '4.17.1' ],
+15 silly audit   '@types/method-override': [ '0.0.35' ],
+15 silly audit   '@types/mime': [ '1.3.5' ],
+15 silly audit   '@types/mime-types': [ '2.1.4' ],
+15 silly audit   '@types/moment-jalaali': [ '0.7.9' ],
+15 silly audit   '@types/mongoose': [ '5.11.97' ],
+15 silly audit   '@types/mongoose-aggregate-paginate-v2': [ '1.0.12' ],
+15 silly audit   '@types/multer': [ '1.4.11' ],
+15 silly audit   '@types/node': [ '20.12.11' ],
+15 silly audit   '@types/passport': [ '1.0.16' ],
+15 silly audit   '@types/passport-local': [ '1.0.38' ],
+15 silly audit   '@types/passport-strategy': [ '0.2.38' ],
+15 silly audit   '@types/qs': [ '6.9.15' ],
+15 silly audit   '@types/range-parser': [ '1.2.7' ],
+15 silly audit   '@types/send': [ '0.17.4' ],
+15 silly audit   '@types/serve-static': [ '1.15.7' ],
+15 silly audit   '@types/trusted-types': [ '2.0.7' ],
+15 silly audit   '@types/uuid': [ '10.0.0' ],
+15 silly audit   '@types/validator': [ '13.11.10' ],
+15 silly audit   '@types/webidl-conversions': [ '7.0.3' ],
+15 silly audit   '@types/whatwg-url': [ '11.0.4', '8.2.2' ],
+15 silly audit   abbrev: [ '1.1.1' ],
+15 silly audit   accepts: [ '1.3.8' ],
+15 silly audit   acorn: [ '8.11.3' ],
+15 silly audit   'acorn-walk': [ '8.3.2' ],
+15 silly audit   'ansi-styles': [ '4.3.0' ],
+15 silly audit   anymatch: [ '3.1.3' ],
+15 silly audit   arg: [ '4.1.3' ],
+15 silly audit   'array-flatten': [ '1.1.1' ],
+15 silly audit   'asn1.js': [ '5.4.1' ],
+15 silly audit   async: [ '3.2.5' ],
+15 silly audit   asynckit: [ '0.4.0' ],
+15 silly audit   axios: [ '1.7.2' ],
+15 silly audit   'balanced-match': [ '1.0.2' ],
+15 silly audit   'binary-extensions': [ '2.3.0' ],
+15 silly audit   'bn.js': [ '4.12.0' ],
+15 silly audit   'body-parser': [ '1.20.2' ],
+15 silly audit   bowser: [ '2.11.0' ],
+15 silly audit   'brace-expansion': [ '1.1.11', '2.0.1' ],
+15 silly audit   braces: [ '3.0.3' ],
+15 silly audit   bson: [ '6.7.0', '5.5.1' ],
+15 silly audit   busboy: [ '1.6.0' ],
+15 silly audit   bytes: [ '3.1.2', '3.0.0' ],
+15 silly audit   'call-bind': [ '1.0.7' ],
+15 silly audit   chalk: [ '4.1.2' ],
+15 silly audit   chokidar: [ '3.6.0' ],
+15 silly audit   color: [ '4.2.3' ],
+15 silly audit   'color-convert': [ '2.0.1' ],
+15 silly audit   'color-name': [ '1.1.4' ],
+15 silly audit   'color-string': [ '1.9.1' ],
+15 silly audit   'combined-stream': [ '1.0.8' ],
+15 silly audit   compressible: [ '2.0.18' ],
+15 silly audit   compression: [ '1.7.4' ],
+15 silly audit   'concat-map': [ '0.0.1' ],
+15 silly audit   'connect-flash': [ '0.1.1' ],
+15 silly audit   'connect-mongo': [ '5.1.0' ],
+15 silly audit   debug: [ '4.3.4', '2.6.9', '3.1.0' ],
+15 silly audit   ms: [ '2.1.2', '2.1.3', '2.0.0' ],
+15 silly audit   'content-disposition': [ '0.5.4' ],
+15 silly audit   'safe-buffer': [ '5.2.1', '5.1.2' ],
+15 silly audit   'content-type': [ '1.0.5' ],
+15 silly audit   cookie: [ '0.4.1', '0.4.0', '0.6.0' ],
+15 silly audit   'cookie-parser': [ '1.4.6' ],
+15 silly audit   'cookie-signature': [ '1.0.6', '1.0.7' ],
+15 silly audit   cors: [ '2.8.5' ],
+15 silly audit   'create-require': [ '1.1.1' ],
+15 silly audit   csrf: [ '3.1.0' ],
+15 silly audit   csurf: [ '1.11.0' ],
+15 silly audit   depd: [ '1.1.2', '2.0.0' ],
+15 silly audit   'http-errors': [ '1.7.3', '2.0.0' ],
+15 silly audit   setprototypeof: [ '1.1.1', '1.2.0' ],
+15 silly audit   statuses: [ '1.5.0', '2.0.1' ],
+15 silly audit   toidentifier: [ '1.0.0', '1.0.1' ],
+15 silly audit   'define-data-property': [ '1.1.4' ],
+15 silly audit   'delayed-stream': [ '1.0.0' ],
+15 silly audit   destroy: [ '1.2.0' ],
+15 silly audit   'detect-libc': [ '2.0.3' ],
+15 silly audit   diff: [ '4.0.2' ],
+15 silly audit   dotenv: [ '16.4.5' ],
+15 silly audit   'ee-first': [ '1.1.1' ],
+15 silly audit   ejs: [ '3.1.10' ],
+15 silly audit   encodeurl: [ '1.0.2' ],
+15 silly audit   'es-define-property': [ '1.0.0' ],
+15 silly audit   'es-errors': [ '1.3.0' ],
+15 silly audit   'escape-html': [ '1.0.3' ],
+15 silly audit   etag: [ '1.8.1' ],
+15 silly audit   express: [ '4.19.2' ],
+15 silly audit   'express-ejs-layouts': [ '2.5.1' ],
+15 silly audit   'express-fileupload': [ '1.5.0' ],
+15 silly audit   'express-messages': [ '1.0.1' ],
+15 silly audit   'express-session': [ '1.18.0' ],
+15 silly audit   'express-validator': [ '7.0.1' ],
+15 silly audit   'fast-xml-parser': [ '4.2.5' ],
+15 silly audit   filelist: [ '1.0.4' ],
+15 silly audit   minimatch: [ '5.1.6', '3.1.2' ],
+15 silly audit   'fill-range': [ '7.1.1' ],
+15 silly audit   finalhandler: [ '1.2.0' ],
+15 silly audit   'follow-redirects': [ '1.15.6' ],
+15 silly audit   'form-data': [ '4.0.0' ],
+15 silly audit   forwarded: [ '0.2.0' ],
+15 silly audit   fresh: [ '0.5.2' ],
+15 silly audit   'fs.realpath': [ '1.0.0' ],
+15 silly audit   fsevents: [ '2.3.3' ],
+15 silly audit   'function-bind': [ '1.1.2' ],
+15 silly audit   'get-intrinsic': [ '1.2.4' ],
+15 silly audit   glob: [ '7.2.3' ],
+15 silly audit   'glob-parent': [ '5.1.2' ],
+15 silly audit   gopd: [ '1.0.1' ],
+15 silly audit   'has-flag': [ '4.0.0', '3.0.0' ],
+15 silly audit   'has-property-descriptors': [ '1.0.2' ],
+15 silly audit   'has-proto': [ '1.0.3' ],
+15 silly audit   'has-symbols': [ '1.0.3' ],
+15 silly audit   hasown: [ '2.0.2' ],
+15 silly audit   'iconv-lite': [ '0.4.24' ],
+15 silly audit   'ignore-by-default': [ '1.0.1' ],
+15 silly audit   inflight: [ '1.0.6' ],
+15 silly audit   inherits: [ '2.0.4' ],
+15 silly audit   'ip-address': [ '9.0.5' ],
+15 silly audit   'ipaddr.js': [ '1.9.1' ],
+15 silly audit   'is-arrayish': [ '0.3.2' ],
+15 silly audit   'is-binary-path': [ '2.1.0' ],
+15 silly audit   'is-extglob': [ '2.1.1' ],
+15 silly audit   'is-glob': [ '4.0.3' ],
+15 silly audit   'is-number': [ '7.0.0' ],
+15 silly audit   jake: [ '10.9.1' ],
+15 silly audit   'jalaali-js': [ '1.2.7' ],
+15 silly audit   jsbn: [ '1.1.0' ],
+15 silly audit   kareem: [ '2.6.3', '2.5.1' ],
+15 silly audit   kruptein: [ '3.0.6' ],
+15 silly audit   lodash: [ '4.17.21' ],
+15 silly audit   'make-error': [ '1.3.6' ],
+15 silly audit   'media-typer': [ '0.3.0' ],
+15 silly audit   'memory-pager': [ '1.5.0' ],
+15 silly audit   'merge-descriptors': [ '1.0.1' ],
+15 silly audit   'method-override': [ '3.0.0' ],
+15 silly audit   methods: [ '1.1.2' ],
+15 silly audit   mime: [ '1.6.0' ],
+15 silly audit   'mime-db': [ '1.52.0' ],
+15 silly audit   'mime-types': [ '2.1.35' ],
+15 silly audit   'minimalistic-assert': [ '1.0.1' ],
+15 silly audit   moment: [ '2.30.1' ],
+15 silly audit   'moment-jalaali': [ '0.10.1' ],
+15 silly audit   'moment-timezone': [ '0.5.45' ],
+15 silly audit   mongodb: [ '6.6.1', '5.9.2', '6.5.0' ],
+15 silly audit   'mongodb-connection-string-url': [ '3.0.1', '2.6.0' ],
+15 silly audit   mongoose: [ '8.3.4', '7.6.12' ],
+15 silly audit   'mongoose-aggregate-paginate-v2': [ '1.1.0' ],
+15 silly audit   'mongoose-paginate-ts': [ '1.3.1' ],
+15 silly audit   sift: [ '16.0.1', '17.1.3' ],
+15 silly audit   tr46: [ '3.0.0', '4.1.1' ],
+15 silly audit   'whatwg-url': [ '11.0.0', '13.0.0' ],
+15 silly audit   mpath: [ '0.9.0' ],
+15 silly audit   mquery: [ '5.0.0' ],
+15 silly audit   negotiator: [ '0.6.3' ],
+15 silly audit   nodemon: [ '3.1.0' ],
+15 silly audit   'supports-color': [ '5.5.0', '7.2.0' ],
+15 silly audit   nopt: [ '1.0.10' ],
+15 silly audit   'normalize-path': [ '3.0.0' ],
+15 silly audit   'object-assign': [ '4.1.1' ],
+15 silly audit   'object-inspect': [ '1.13.1' ],
+15 silly audit   'on-finished': [ '2.4.1' ],
+15 silly audit   'on-headers': [ '1.0.2' ],
+15 silly audit   once: [ '1.4.0' ],
+15 silly audit   parseurl: [ '1.3.3' ],
+15 silly audit   passport: [ '0.7.0' ],
+15 silly audit   'passport-local': [ '1.0.0' ],
+15 silly audit   'passport-strategy': [ '1.0.0' ],
+15 silly audit   'path-is-absolute': [ '1.0.1' ],
+15 silly audit   'path-to-regexp': [ '0.1.7' ],
+15 silly audit   pause: [ '0.0.1' ],
+15 silly audit   picomatch: [ '2.3.1' ],
+15 silly audit   'proxy-addr': [ '2.0.7' ],
+15 silly audit   'proxy-from-env': [ '1.1.0' ],
+15 silly audit   'pstree.remy': [ '1.1.8' ],
+15 silly audit   punycode: [ '2.3.1' ],
+15 silly audit   qs: [ '6.11.0' ],
+15 silly audit   'random-bytes': [ '1.0.0' ],
+15 silly audit   'range-parser': [ '1.2.1' ],
+15 silly audit   'raw-body': [ '2.5.2' ],
+15 silly audit   readdirp: [ '3.6.0' ],
+15 silly audit   rimraf: [ '3.0.2' ],
+15 silly audit   rndm: [ '1.2.0' ],
+15 silly audit   'safer-buffer': [ '2.1.2' ],
+15 silly audit   semver: [ '7.6.2' ],
+15 silly audit   send: [ '0.18.0' ],
+15 silly audit   'serve-static': [ '1.15.0' ],
+15 silly audit   'set-function-length': [ '1.2.2' ],
+15 silly audit   sharp: [ '0.33.4' ],
+15 silly audit   'side-channel': [ '1.0.6' ],
+15 silly audit   'simple-swizzle': [ '0.2.2' ],
+15 silly audit   'simple-update-notifier': [ '2.0.0' ],
+15 silly audit   'smart-buffer': [ '4.2.0' ],
+15 silly audit   socks: [ '2.8.3' ],
+15 silly audit   'sparse-bitfield': [ '3.0.3' ],
+15 silly audit   'sprintf-js': [ '1.1.3' ],
+15 silly audit   streamsearch: [ '1.1.0' ],
+15 silly audit   strnum: [ '1.0.5' ],
+15 silly audit   'to-regex-range': [ '5.0.1' ],
+15 silly audit   touch: [ '3.1.0' ],
+15 silly audit   'ts-node': [ '10.9.2' ],
+15 silly audit   tsscmp: [ '1.0.6' ],
+15 silly audit   'type-is': [ '1.6.18' ],
+15 silly audit   typescript: [ '5.4.5' ],
+15 silly audit   'uid-safe': [ '2.1.5' ],
+15 silly audit   undefsafe: [ '2.0.5' ],
+15 silly audit   'undici-types': [ '5.26.5' ],
+15 silly audit   unpipe: [ '1.0.0' ],
+15 silly audit   'utils-merge': [ '1.0.1' ],
+15 silly audit   'v8-compile-cache-lib': [ '3.0.1' ],
+15 silly audit   validator: [ '13.12.0' ],
+15 silly audit   vary: [ '1.1.2' ],
+15 silly audit   'webidl-conversions': [ '7.0.0' ],
+15 silly audit   wrappy: [ '1.0.2' ],
+15 silly audit   yn: [ '3.1.1' ]
+15 silly audit }
+16 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/fsevents
+17 silly reify mark deleted [
+17 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/fsevents'
+17 silly reify ]
+18 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-win32-x64
+19 silly reify mark deleted [
+19 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-win32-x64'
+19 silly reify ]
+20 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-win32-ia32
+21 silly reify mark deleted [
+21 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-win32-ia32'
+21 silly reify ]
+22 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-wasm32
+23 silly reify mark deleted [
+23 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-wasm32'
+23 silly reify ]
+24 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@emnapi/runtime
+25 silly reify mark deleted [
+25 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@emnapi/runtime'
+25 silly reify ]
+26 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linuxmusl-arm64
+27 silly reify mark deleted [
+27 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linuxmusl-arm64'
+27 silly reify ]
+28 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linux-s390x
+29 silly reify mark deleted [
+29 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linux-s390x'
+29 silly reify ]
+30 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linux-arm64
+31 silly reify mark deleted [
+31 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linux-arm64'
+31 silly reify ]
+32 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linux-arm
+33 silly reify mark deleted [
+33 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-linux-arm'
+33 silly reify ]
+34 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linuxmusl-arm64
+35 silly reify mark deleted [
+35 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linuxmusl-arm64'
+35 silly reify ]
+36 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linux-s390x
+37 silly reify mark deleted [
+37 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linux-s390x'
+37 silly reify ]
+38 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linux-arm64
+39 silly reify mark deleted [
+39 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linux-arm64'
+39 silly reify ]
+40 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linux-arm
+41 silly reify mark deleted [
+41 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-linux-arm'
+41 silly reify ]
+42 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-darwin-x64
+43 silly reify mark deleted [
+43 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-darwin-x64'
+43 silly reify ]
+44 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-darwin-arm64
+45 silly reify mark deleted [
+45 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-libvips-darwin-arm64'
+45 silly reify ]
+46 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-darwin-x64
+47 silly reify mark deleted [
+47 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-darwin-x64'
+47 silly reify ]
+48 verbose reify failed optional dependency /home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-darwin-arm64
+49 silly reify mark deleted [
+49 silly reify   '/home/denooj/actions-runner/nodejs/denooj.com-backend-nodejs-app/denooj.com-backend-nodejs-app/node_modules/@img/sharp-darwin-arm64'
+49 silly reify ]
+50 warn deprecated @types/mongoose@5.11.97: Mongoose publishes its own types, so you do not need to install this package.
+51 warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+52 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 4091ms
+53 silly audit report {}
+54 warn deprecated csurf@1.11.0: Please use another csrf package
+55 warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+56 warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+57 info run sharp@0.33.4 install node_modules/sharp node install/check
+58 info run sharp@0.33.4 install { code: 0, signal: null }
+59 silly ADD node_modules/yn
+60 silly ADD node_modules/wrappy
+61 silly ADD node_modules/whatwg-url
+62 silly ADD node_modules/webidl-conversions
+63 silly ADD node_modules/vary
+64 silly ADD node_modules/validator
+65 silly ADD node_modules/v8-compile-cache-lib
+66 silly ADD node_modules/uuid
+67 silly ADD node_modules/utils-merge
+68 silly ADD node_modules/unpipe
+69 silly ADD node_modules/undici-types
+70 silly ADD node_modules/undefsafe
+71 silly ADD node_modules/uid-safe
+72 silly ADD node_modules/typescript
+73 silly ADD node_modules/type-is
+74 silly ADD node_modules/tsscmp
+75 silly ADD node_modules/tslib
+76 silly ADD node_modules/ts-node
+77 silly ADD node_modules/tr46
+78 silly ADD node_modules/touch
+79 silly ADD node_modules/toidentifier
+80 silly ADD node_modules/to-regex-range
+81 silly ADD node_modules/supports-color
+82 silly ADD node_modules/strnum
+83 silly ADD node_modules/streamsearch
+84 silly ADD node_modules/statuses
+85 silly ADD node_modules/sprintf-js
+86 silly ADD node_modules/sparse-bitfield
+87 silly ADD node_modules/socks
+88 silly ADD node_modules/smart-buffer
+89 silly ADD node_modules/simple-update-notifier
+90 silly ADD node_modules/simple-swizzle
+91 silly ADD node_modules/sift
+92 silly ADD node_modules/side-channel
+93 silly ADD node_modules/sharp
+94 silly ADD node_modules/setprototypeof
+95 silly ADD node_modules/set-function-length
+96 silly ADD node_modules/serve-static
+97 silly ADD node_modules/send
+98 silly ADD node_modules/send/node_modules/ms
+99 silly ADD node_modules/semver
+100 silly ADD node_modules/safer-buffer
+101 silly ADD node_modules/safe-buffer
+102 silly ADD node_modules/rndm
+103 silly ADD node_modules/rimraf
+104 silly ADD node_modules/readdirp
+105 silly ADD node_modules/raw-body
+106 silly ADD node_modules/range-parser
+107 silly ADD node_modules/random-bytes
+108 silly ADD node_modules/qs
+109 silly ADD node_modules/punycode
+110 silly ADD node_modules/pstree.remy
+111 silly ADD node_modules/proxy-from-env
+112 silly ADD node_modules/proxy-addr
+113 silly ADD node_modules/picomatch
+114 silly ADD node_modules/pause
+115 silly ADD node_modules/path-to-regexp
+116 silly ADD node_modules/path-is-absolute
+117 silly ADD node_modules/passport-strategy
+118 silly ADD node_modules/passport-local
+119 silly ADD node_modules/passport
+120 silly ADD node_modules/parseurl
+121 silly ADD node_modules/once
+122 silly ADD node_modules/on-headers
+123 silly ADD node_modules/on-finished
+124 silly ADD node_modules/object-inspect
+125 silly ADD node_modules/object-assign
+126 silly ADD node_modules/normalize-path
+127 silly ADD node_modules/nopt
+128 silly ADD node_modules/nodemon
+129 silly ADD node_modules/nodemon/node_modules/supports-color
+130 silly ADD node_modules/nodemon/node_modules/ms
+131 silly ADD node_modules/nodemon/node_modules/has-flag
+132 silly ADD node_modules/nodemon/node_modules/debug
+133 silly ADD node_modules/negotiator
+134 silly ADD node_modules/ms
+135 silly ADD node_modules/mquery
+136 silly ADD node_modules/mquery/node_modules/ms
+137 silly ADD node_modules/mquery/node_modules/debug
+138 silly ADD node_modules/mpath
+139 silly ADD node_modules/mongoose-paginate-ts
+140 silly ADD node_modules/mongoose-paginate-ts/node_modules/whatwg-url
+141 silly ADD node_modules/mongoose-paginate-ts/node_modules/tr46
+142 silly ADD node_modules/mongoose-paginate-ts/node_modules/sift
+143 silly ADD node_modules/mongoose-paginate-ts/node_modules/ms
+144 silly ADD node_modules/mongoose-paginate-ts/node_modules/mongoose
+145 silly ADD node_modules/mongoose-paginate-ts/node_modules/mongodb-connection-string-url
+146 silly ADD node_modules/mongoose-paginate-ts/node_modules/mongodb
+147 silly ADD node_modules/mongoose-paginate-ts/node_modules/kareem
+148 silly ADD node_modules/mongoose-paginate-ts/node_modules/bson
+149 silly ADD node_modules/mongoose-paginate-ts/node_modules/@types/whatwg-url
+150 silly ADD node_modules/mongoose-aggregate-paginate-v2
+151 silly ADD node_modules/mongoose
+152 silly ADD node_modules/mongoose/node_modules/ms
+153 silly ADD node_modules/mongoose/node_modules/mongodb
+154 silly ADD node_modules/mongodb-connection-string-url
+155 silly ADD node_modules/mongodb
+156 silly ADD node_modules/moment-timezone
+157 silly ADD node_modules/moment-jalaali
+158 silly ADD node_modules/moment
+159 silly ADD node_modules/minimatch
+160 silly ADD node_modules/minimalistic-assert
+161 silly ADD node_modules/mime-types
+162 silly ADD node_modules/mime-db
+163 silly ADD node_modules/mime
+164 silly ADD node_modules/methods
+165 silly ADD node_modules/method-override
+166 silly ADD node_modules/method-override/node_modules/debug
+167 silly ADD node_modules/merge-descriptors
+168 silly ADD node_modules/memory-pager
+169 silly ADD node_modules/media-typer
+170 silly ADD node_modules/make-error
+171 silly ADD node_modules/lodash
+172 silly ADD node_modules/kruptein
+173 silly ADD node_modules/kareem
+174 silly ADD node_modules/jsbn
+175 silly ADD node_modules/jalaali-js
+176 silly ADD node_modules/jake
+177 silly ADD node_modules/is-number
+178 silly ADD node_modules/is-glob
+179 silly ADD node_modules/is-extglob
+180 silly ADD node_modules/is-binary-path
+181 silly ADD node_modules/is-arrayish
+182 silly ADD node_modules/ipaddr.js
+183 silly ADD node_modules/ip-address
+184 silly ADD node_modules/inherits
+185 silly ADD node_modules/inflight
+186 silly ADD node_modules/ignore-by-default
+187 silly ADD node_modules/iconv-lite
+188 silly ADD node_modules/http-errors
+189 silly ADD node_modules/hasown
+190 silly ADD node_modules/has-symbols
+191 silly ADD node_modules/has-proto
+192 silly ADD node_modules/has-property-descriptors
+193 silly ADD node_modules/has-flag
+194 silly ADD node_modules/gopd
+195 silly ADD node_modules/glob-parent
+196 silly ADD node_modules/glob
+197 silly ADD node_modules/get-intrinsic
+198 silly ADD node_modules/function-bind
+199 silly ADD
+200 silly ADD node_modules/fs.realpath
+201 silly ADD node_modules/fresh
+202 silly ADD node_modules/forwarded
+203 silly ADD node_modules/form-data
+204 silly ADD node_modules/follow-redirects
+205 silly ADD node_modules/finalhandler
+206 silly ADD node_modules/fill-range
+207 silly ADD node_modules/filelist
+208 silly ADD node_modules/filelist/node_modules/minimatch
+209 silly ADD node_modules/filelist/node_modules/brace-expansion
+210 silly ADD node_modules/fast-xml-parser
+211 silly ADD node_modules/express-validator
+212 silly ADD node_modules/express-session
+213 silly ADD node_modules/express-session/node_modules/safe-buffer
+214 silly ADD node_modules/express-session/node_modules/cookie-signature
+215 silly ADD node_modules/express-session/node_modules/cookie
+216 silly ADD node_modules/express-messages
+217 silly ADD node_modules/express-fileupload
+218 silly ADD node_modules/express-ejs-layouts
+219 silly ADD node_modules/express
+220 silly ADD node_modules/express/node_modules/safe-buffer
+221 silly ADD node_modules/express/node_modules/cookie
+222 silly ADD node_modules/etag
+223 silly ADD node_modules/escape-html
+224 silly ADD node_modules/es-errors
+225 silly ADD node_modules/es-define-property
+226 silly ADD node_modules/encodeurl
+227 silly ADD node_modules/ejs
+228 silly ADD node_modules/ee-first
+229 silly ADD node_modules/dotenv
+230 silly ADD node_modules/diff
+231 silly ADD node_modules/detect-libc
+232 silly ADD node_modules/destroy
+233 silly ADD node_modules/depd
+234 silly ADD node_modules/delayed-stream
+235 silly ADD node_modules/define-data-property
+236 silly ADD node_modules/debug
+237 silly ADD node_modules/csurf
+238 silly ADD node_modules/csurf/node_modules/toidentifier
+239 silly ADD node_modules/csurf/node_modules/statuses
+240 silly ADD node_modules/csurf/node_modules/setprototypeof
+241 silly ADD node_modules/csurf/node_modules/http-errors
+242 silly ADD node_modules/csurf/node_modules/depd
+243 silly ADD node_modules/csurf/node_modules/cookie
+244 silly ADD node_modules/csrf
+245 silly ADD node_modules/create-require
+246 silly ADD node_modules/cors
+247 silly ADD node_modules/cookie-signature
+248 silly ADD node_modules/cookie-parser
+249 silly ADD node_modules/cookie
+250 silly ADD node_modules/content-type
+251 silly ADD node_modules/content-disposition
+252 silly ADD node_modules/content-disposition/node_modules/safe-buffer
+253 silly ADD node_modules/connect-mongo
+254 silly ADD node_modules/connect-mongo/node_modules/ms
+255 silly ADD node_modules/connect-mongo/node_modules/debug
+256 silly ADD node_modules/connect-flash
+257 silly ADD node_modules/concat-map
+258 silly ADD node_modules/compression
+259 silly ADD node_modules/compression/node_modules/bytes
+260 silly ADD node_modules/compressible
+261 silly ADD node_modules/combined-stream
+262 silly ADD node_modules/color-string
+263 silly ADD node_modules/color-name
+264 silly ADD node_modules/color-convert
+265 silly ADD node_modules/color
+266 silly ADD node_modules/chokidar
+267 silly ADD node_modules/chalk
+268 silly ADD node_modules/call-bind
+269 silly ADD node_modules/bytes
+270 silly ADD node_modules/busboy
+271 silly ADD node_modules/bson
+272 silly ADD node_modules/braces
+273 silly ADD node_modules/brace-expansion
+274 silly ADD node_modules/bowser
+275 silly ADD node_modules/body-parser
+276 silly ADD node_modules/bn.js
+277 silly ADD node_modules/binary-extensions
+278 silly ADD node_modules/balanced-match
+279 silly ADD node_modules/axios
+280 silly ADD node_modules/asynckit
+281 silly ADD node_modules/async
+282 silly ADD node_modules/asn1.js
+283 silly ADD node_modules/array-flatten
+284 silly ADD node_modules/arg
+285 silly ADD node_modules/anymatch
+286 silly ADD node_modules/ansi-styles
+287 silly ADD node_modules/acorn-walk
+288 silly ADD node_modules/acorn
+289 silly ADD node_modules/accepts
+290 silly ADD node_modules/abbrev
+291 silly ADD node_modules/@types/whatwg-url
+292 silly ADD node_modules/@types/webidl-conversions
+293 silly ADD node_modules/@types/validator
+294 silly ADD node_modules/@types/uuid
+295 silly ADD node_modules/@types/trusted-types
+296 silly ADD node_modules/@types/serve-static
+297 silly ADD node_modules/@types/send
+298 silly ADD node_modules/@types/range-parser
+299 silly ADD node_modules/@types/qs
+300 silly ADD node_modules/@types/passport-strategy
+301 silly ADD node_modules/@types/passport-local
+302 silly ADD node_modules/@types/passport
+303 silly ADD node_modules/@types/node
+304 silly ADD node_modules/@types/multer
+305 silly ADD node_modules/@types/mongoose-aggregate-paginate-v2
+306 silly ADD node_modules/@types/mongoose
+307 silly ADD node_modules/@types/moment-jalaali
+308 silly ADD node_modules/@types/mime-types
+309 silly ADD node_modules/@types/mime
+310 silly ADD node_modules/@types/method-override
+311 silly ADD node_modules/@types/lodash
+312 silly ADD node_modules/@types/http-errors
+313 silly ADD node_modules/@types/express-session
+314 silly ADD node_modules/@types/express-serve-static-core
+315 silly ADD node_modules/@types/express-fileupload
+316 silly ADD node_modules/@types/express-ejs-layouts
+317 silly ADD node_modules/@types/express
+318 silly ADD node_modules/@types/dompurify
+319 silly ADD node_modules/@types/csurf
+320 silly ADD node_modules/@types/cors
+321 silly ADD node_modules/@types/cookie-parser
+322 silly ADD node_modules/@types/connect-flash
+323 silly ADD node_modules/@types/connect
+324 silly ADD node_modules/@types/compression
+325 silly ADD node_modules/@types/busboy
+326 silly ADD node_modules/@types/body-parser
+327 silly ADD node_modules/@tsconfig/node16
+328 silly ADD node_modules/@tsconfig/node14
+329 silly ADD node_modules/@tsconfig/node12
+330 silly ADD node_modules/@tsconfig/node10
+331 silly ADD node_modules/@smithy/util-utf8
+332 silly ADD node_modules/@smithy/util-uri-escape
+333 silly ADD node_modules/@smithy/util-stream
+334 silly ADD node_modules/@smithy/util-retry
+335 silly ADD node_modules/@smithy/util-middleware
+336 silly ADD node_modules/@smithy/util-hex-encoding
+337 silly ADD node_modules/@smithy/util-endpoints
+338 silly ADD node_modules/@smithy/util-defaults-mode-node
+339 silly ADD node_modules/@smithy/util-defaults-mode-browser
+340 silly ADD node_modules/@smithy/util-config-provider
+341 silly ADD node_modules/@smithy/util-buffer-from
+342 silly ADD node_modules/@smithy/util-body-length-node
+343 silly ADD node_modules/@smithy/util-body-length-browser
+344 silly ADD node_modules/@smithy/util-base64
+345 silly ADD node_modules/@smithy/url-parser
+346 silly ADD node_modules/@smithy/types
+347 silly ADD node_modules/@smithy/smithy-client
+348 silly ADD node_modules/@smithy/signature-v4
+349 silly ADD node_modules/@smithy/shared-ini-file-loader
+350 silly ADD node_modules/@smithy/service-error-classification
+351 silly ADD node_modules/@smithy/querystring-parser
+352 silly ADD node_modules/@smithy/querystring-builder
+353 silly ADD node_modules/@smithy/protocol-http
+354 silly ADD node_modules/@smithy/property-provider
+355 silly ADD node_modules/@smithy/node-http-handler
+356 silly ADD node_modules/@smithy/node-config-provider
+357 silly ADD node_modules/@smithy/middleware-stack
+358 silly ADD node_modules/@smithy/middleware-serde
+359 silly ADD node_modules/@smithy/middleware-retry
+360 silly ADD node_modules/@smithy/middleware-retry/node_modules/uuid
+361 silly ADD node_modules/@smithy/middleware-endpoint
+362 silly ADD node_modules/@smithy/middleware-content-length
+363 silly ADD node_modules/@smithy/is-array-buffer
+364 silly ADD node_modules/@smithy/invalid-dependency
+365 silly ADD node_modules/@smithy/hash-node
+366 silly ADD node_modules/@smithy/fetch-http-handler
+367 silly ADD node_modules/@smithy/credential-provider-imds
+368 silly ADD node_modules/@smithy/core
+369 silly ADD node_modules/@smithy/config-resolver
+370 silly ADD node_modules/@smithy/abort-controller
+371 silly ADD node_modules/@mongodb-js/saslprep
+372 silly ADD node_modules/@jridgewell/trace-mapping
+373 silly ADD node_modules/@jridgewell/sourcemap-codec
+374 silly ADD node_modules/@jridgewell/resolve-uri
+375 silly ADD
+376 silly ADD
+377 silly ADD
+378 silly ADD node_modules/@img/sharp-linuxmusl-x64
+379 silly ADD
+380 silly ADD node_modules/@img/sharp-linux-x64
+381 silly ADD
+382 silly ADD
+383 silly ADD
+384 silly ADD node_modules/@img/sharp-libvips-linuxmusl-x64
+385 silly ADD
+386 silly ADD node_modules/@img/sharp-libvips-linux-x64
+387 silly ADD
+388 silly ADD
+389 silly ADD
+390 silly ADD
+391 silly ADD
+392 silly ADD
+393 silly ADD
+394 silly ADD
+395 silly ADD node_modules/@cspotcode/source-map-support
+396 silly ADD node_modules/@aws-sdk/util-utf8-browser
+397 silly ADD node_modules/@aws-sdk/util-user-agent-node
+398 silly ADD node_modules/@aws-sdk/util-user-agent-browser
+399 silly ADD node_modules/@aws-sdk/util-locate-window
+400 silly ADD node_modules/@aws-sdk/util-endpoints
+401 silly ADD node_modules/@aws-sdk/types
+402 silly ADD node_modules/@aws-sdk/token-providers
+403 silly ADD node_modules/@aws-sdk/region-config-resolver
+404 silly ADD node_modules/@aws-sdk/middleware-user-agent
+405 silly ADD node_modules/@aws-sdk/middleware-recursion-detection
+406 silly ADD node_modules/@aws-sdk/middleware-logger
+407 silly ADD node_modules/@aws-sdk/middleware-host-header
+408 silly ADD node_modules/@aws-sdk/credential-providers
+409 silly ADD node_modules/@aws-sdk/credential-provider-web-identity
+410 silly ADD node_modules/@aws-sdk/credential-provider-sso
+411 silly ADD node_modules/@aws-sdk/credential-provider-process
+412 silly ADD node_modules/@aws-sdk/credential-provider-node
+413 silly ADD node_modules/@aws-sdk/credential-provider-ini
+414 silly ADD node_modules/@aws-sdk/credential-provider-http
+415 silly ADD node_modules/@aws-sdk/credential-provider-env
+416 silly ADD node_modules/@aws-sdk/credential-provider-cognito-identity
+417 silly ADD node_modules/@aws-sdk/core
+418 silly ADD node_modules/@aws-sdk/client-sts
+419 silly ADD node_modules/@aws-sdk/client-sso-oidc
+420 silly ADD node_modules/@aws-sdk/client-sso
+421 silly ADD node_modules/@aws-sdk/client-cognito-identity
+422 silly ADD node_modules/@aws-crypto/util
+423 silly ADD node_modules/@aws-crypto/util/node_modules/tslib
+424 silly ADD node_modules/@aws-crypto/supports-web-crypto
+425 silly ADD node_modules/@aws-crypto/supports-web-crypto/node_modules/tslib
+426 silly ADD node_modules/@aws-crypto/sha256-js
+427 silly ADD node_modules/@aws-crypto/sha256-js/node_modules/tslib
+428 silly ADD node_modules/@aws-crypto/sha256-browser
+429 silly ADD node_modules/@aws-crypto/sha256-browser/node_modules/tslib
+430 silly ADD node_modules/@aws-crypto/ie11-detection
+431 silly ADD node_modules/@aws-crypto/ie11-detection/node_modules/tslib
+432 verbose exit 0
+433 info ok
