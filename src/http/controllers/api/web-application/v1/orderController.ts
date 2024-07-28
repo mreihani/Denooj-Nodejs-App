@@ -110,8 +110,3 @@ export const getUserOrders = async(req: express.Request, res: express.Response) 
         return res.json(results);
     });
 }
-
-export const testRoute = async(req: express.Request, res: express.Response) => {
-    const cookies = req.cookies;
-    return res.json(cookies);
-}

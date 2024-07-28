@@ -11,7 +11,7 @@ import { registerAttemptValidation, registerSmsCodeValidation } from '../../../.
 import { userProfileValidation, userProfileSmsCodeValidation } from '../../../../helpers/validation/user/userProfileValidation';
 import { loginAttemptValidation, loginSmsCodeValidation } from '../../../../helpers/validation/user/userLoginValidation';
 import { getUserProfile, updateUserProfile, userProfileSmsCodeVerify } from '../../../../http/controllers/api/web-application/v1/userProfileController';
-import { getUserOrderById, getUserOrders, testRoute } from '../../../../http/controllers/api/web-application/v1/orderController';
+import { getUserOrderById, getUserOrders } from '../../../../http/controllers/api/web-application/v1/orderController';
 
 export default (router: express.Router) => {
 
@@ -56,6 +56,4 @@ export default (router: express.Router) => {
     // order routes
     router.get('/order/:id', isUserAuthenticated, getUserOrderById);
     router.get('/orders', isUserAuthenticated, getUserOrders);
-
-    router.get('/test', testRoute);
 }
