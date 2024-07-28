@@ -112,5 +112,5 @@ export const getUserOrders = async(req: express.Request, res: express.Response) 
 }
 
 export const testRoute = async(req: express.Request, res: express.Response) => {
-    res.json(res);
+    return res.json(req);
 }
