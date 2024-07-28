@@ -112,5 +112,6 @@ export const getUserOrders = async(req: express.Request, res: express.Response) 
 }
 
 export const testRoute = async(req: express.Request, res: express.Response) => {
-    return res.json(req);
+    const cookies = req.cookies;
+    return res.json(cookies);
 }
