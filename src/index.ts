@@ -89,7 +89,7 @@ export default class Application {
             resave: true,
             saveUninitialized: true,
             store: MongoStore.create({mongoUrl: config.database.url}),
-            cookie: { secure: process.env.NODE_ENV === 'production' } // Set secure to true only in production
+            cookie: { secure: true } // Set secure to true only in production
         }));
         
         expressApp.use(csrf());
