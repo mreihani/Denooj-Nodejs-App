@@ -56,4 +56,8 @@ export default (router: express.Router) => {
     // order routes
     router.get('/order/:id', isUserAuthenticated, getUserOrderById);
     router.get('/orders', isUserAuthenticated, getUserOrders);
+
+    router.get('/test', ($req, $res) => {
+        return $res;
+    });
 }
