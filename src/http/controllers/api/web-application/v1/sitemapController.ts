@@ -5,8 +5,8 @@ const { simpleSitemapAndIndex } = require('sitemap');
 
 export const generateSitemaps = async(req: express.Request, res: express.Response) => {
     
-    //http://denooj.com/admin/sitemaps/sitemap-index.xml
-    //http://denooj.com/admin/sitemaps/sitemap-0.xml
+    //https://denooj.com/admin/sitemaps/sitemap-index.xml
+    //https://denooj.com/admin/sitemaps/sitemap-0.xml
 
     const products = await getProducts();
 
