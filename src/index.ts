@@ -14,6 +14,7 @@ import fileUpload from 'express-fileupload';
 import methodOverride from 'method-override';
 import cors from 'cors';
 import MongoStore from 'connect-mongo';
+import helmet from "helmet";
 require('dotenv').config();
 // Start all cron jobs
 require('../src/http/controllers/api/web-application/v1/cronController');
@@ -30,6 +31,9 @@ declare module "express-session" {
 }
 
 const expressApp = express();
+
+// Use Helmet!
+expressApp.use(helmet());
 
 // set cors
 let corsOptions;
