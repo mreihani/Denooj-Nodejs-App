@@ -36,12 +36,7 @@ const expressApp = express();
 expressApp.enable('trust proxy');
 // expressApp.use(helmet());
 expressApp.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        'img-src': ["'self'", "https:"],
-      },
-    },
+    crossOriginEmbedderPolicy: false,
 }));
 
 // set cors
