@@ -33,13 +33,13 @@ declare module "express-session" {
 const expressApp = express();
 
 // Use Helmet!
-expressApp.enable('trust proxy');
-expressApp.use(helmet());
-
-expressApp.use(function (req, res, next) {
-    res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
-    next()
-})
+// expressApp.enable('trust proxy');
+// expressApp.use(helmet());
+// add this for Helmet to prevent image blockage due to this error: blocked not same origin
+// expressApp.use(function (req, res, next) {
+//     res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
+//     next();
+// });
 
 // set cors
 let corsOptions;
