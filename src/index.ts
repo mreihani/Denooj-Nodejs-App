@@ -15,6 +15,7 @@ import methodOverride from 'method-override';
 import cors from 'cors';
 import MongoStore from 'connect-mongo';
 import helmet from "helmet";
+import { rateLimit } from 'express-rate-limit';
 require('dotenv').config();
 // Start all cron jobs
 require('../src/http/controllers/api/web-application/v1/cronController');
@@ -40,6 +41,18 @@ const expressApp = express();
 //     res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
 //     next();
 // });
+
+// add rate limiter for api 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	// store: ... , // Redis, Memcached, etc. See below.
+})
+// Apply the rate limiting middleware to all requests.
+expressApp.use(limiter)
+
 
 // set cors
 let corsOptions;
