@@ -15,6 +15,8 @@ import methodOverride from 'method-override';
 import cors from 'cors';
 import MongoStore from 'connect-mongo';
 require('dotenv').config();
+// Start all cron jobs
+require('../src/http/controllers/api/web-application/v1/cronController');
 
 const config = require('./config/index');
 
