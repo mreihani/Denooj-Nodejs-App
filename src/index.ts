@@ -34,10 +34,12 @@ const expressApp = express();
 
 // Use Helmet!
 expressApp.enable('trust proxy');
-// expressApp.use(helmet());
-expressApp.use(helmet({
-    crossOriginEmbedderPolicy: false,
-}));
+expressApp.use(helmet());
+
+expressApp.use(function (req, res, next) {
+    res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
+    next()
+})
 
 // set cors
 let corsOptions;
