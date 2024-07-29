@@ -33,6 +33,7 @@ declare module "express-session" {
 const expressApp = express();
 
 // Use Helmet!
+expressApp.enable('trust proxy');
 expressApp.use(helmet());
 
 // set cors
