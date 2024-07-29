@@ -4,7 +4,10 @@ const { simpleSitemapAndIndex } = require('sitemap');
 
 
 export const generateSitemaps = async(req: express.Request, res: express.Response) => {
-    //http://localhost:5000/admin/sitemaps/sitemap-0.xml
+    
+    //http://denooj.com/admin/sitemaps/sitemap-index.xml
+    //http://denooj.com/admin/sitemaps/sitemap-0.xml
+
     const products = await getProducts();
 
     try {
@@ -22,7 +25,7 @@ export const generateSitemaps = async(req: express.Request, res: express.Respons
         await simpleSitemapAndIndex({
             hostname: 'https://denooj.com',
             destinationDir: './public/sitemaps/',
-            sitemapHostname: `https://denooj.com/admin/api/v1/sitemaps/`,
+            sitemapHostname: `https://denooj.com/admin/itemaps/`,
             sourceData: sitemap_items,
             gzip: false, // Disable gzip compression to store sitemaps in .xml format
         });
