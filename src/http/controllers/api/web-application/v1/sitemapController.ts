@@ -25,7 +25,7 @@ export const generateSitemaps = async(req: express.Request, res: express.Respons
         await simpleSitemapAndIndex({
             hostname: 'https://denooj.com',
             destinationDir: './public/sitemaps/',
-            sitemapHostname: `https://denooj.com/admin/itemaps/`,
+            sitemapHostname: `https://denooj.com/admin/sitemaps/`,
             sourceData: sitemap_items,
             gzip: false, // Disable gzip compression to store sitemaps in .xml format
         });
