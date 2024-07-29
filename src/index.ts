@@ -34,7 +34,15 @@ const expressApp = express();
 
 // Use Helmet!
 expressApp.enable('trust proxy');
-expressApp.use(helmet());
+// expressApp.use(helmet());
+expressApp.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'img-src': ["'self'", "https:"],
+      },
+    },
+}));
 
 // set cors
 let corsOptions;
