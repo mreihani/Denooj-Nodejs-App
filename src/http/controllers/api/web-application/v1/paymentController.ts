@@ -3,6 +3,7 @@ import axios from 'axios';
 import { PaymentModel } from '../../../../../models/payment';
 import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../models/order';
 import { v4 as uuidv4 } from 'uuid';
+import soap from 'soap';
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
@@ -68,12 +69,34 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         // remember to clear cart after successful payment
 
 
-        // let params = {
-        //     MerchantId: 'awdwad684',
-        //     Amount: totalPrice,
-        //     CallbackUrl: 'http://localhost:5000/payment/callback',
-        //     Description: 'بابت خرید محصول',
-        // }
+        // Create the SOAP client
+        const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?wsdl';
+        soap.createClient(gatewayUrl, function(err, client) {
+            if (err) {
+                console.error('Error creating SOAP client:', err);
+                return;
+            }
+
+            // Make a SOAP request
+            const requestData = {
+                LoginAccount: 84098998,
+                OrderId: resNumber,
+                Amount: totalPrice,
+                CallBackUrl: 'http://localhost:5000/payment/callback',
+                AdditionalData: 'بابت خرید محصول',
+                Originator: 'بابت خرید محصول',
+            }
+
+            client.SalePayment(requestData, function(err :any, result :any) {
+                if (err) {
+                    console.error('Error making SOAP request:', err);
+                    return;
+                }
+
+                // Handle the SOAP response
+                console.log(result);
+            });
+        });
 
         // Send a POST request
         // axios({
