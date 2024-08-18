@@ -4,6 +4,7 @@ import { PaymentModel } from '../../../../../models/payment';
 import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../models/order';
 import { v4 as uuidv4 } from 'uuid';
 const soap = require('soap');
+import ShortUniqueId from 'short-unique-id';
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
@@ -41,10 +42,13 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         // get an array of product ids
         const productsIdArray = Object.keys(cart.items);
         const lotteryNumbers = await calculateOrderNumber(productsIdArray);
-       
-        const resNumber :string = uuidv4();
+        
+        // const resNumber :string = uuidv4();
+        const uid = new ShortUniqueId({ length: 19, dictionary: 'number' });
+        const resNumber = uid.randomUUID();
+        
         let payament = new PaymentModel({
-            resnumber: resNumber,
+            resnumber: resNumber
         });
         await payament.save();
 
@@ -76,18 +80,18 @@ export const postPayment = async (req: express.Request, res: express.Response) =
                 console.error('Error creating SOAP client:', err);
                 return;
             }
-
-            // Make a SOAP request
+         
+          // Make a SOAP request
             const requestData = {
-                LoginAccount: 84098998,
+                LoginAccount: '6405hRYLc117Q0Elp2P8',
                 OrderId: resNumber,
                 Amount: totalPrice * 10,
                 CallBackUrl: 'http://localhost:5000/payment/callback',
-                AdditionalData: 'بابت خرید محصول',
-                Originator: 'بابت خرید محصول',
-            }
+                AdditionalData: '',
+                Originator: ''
+            };
 
-            client.SalePaymentRequest(requestData, function(err :any, result :any) {
+            client.SalePaymentRequest({ requestData:  requestData }, function(err :any, result :any) {
                 if (err) {
                     console.error('Error making SOAP request:', err);
                     return;
@@ -97,6 +101,12 @@ export const postPayment = async (req: express.Request, res: express.Response) =
                 console.log(result);
             });
         });
+
+
+
+
+
+
 
         // Send a POST request
         // axios({
