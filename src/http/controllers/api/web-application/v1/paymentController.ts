@@ -31,7 +31,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         }
 
         // calculate total price in the cart
-        const totalPrice = Object.values(cart.items).reduce((total :number, item :Item) :number => total + item.price, 0);
+        const totalPrice :any = Object.values(cart.items).reduce((total :number, item :Item) :number => total + item.price, 0);
 
         // add product id and quantity and price to an object and save it in products on order
         let products: { _id: string, qty: number, price: number }[] = Object.entries(cart.items).map(([_id, item]: [string, Item]) => (
@@ -81,7 +81,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
             const requestData = {
                 LoginAccount: 84098998,
                 OrderId: resNumber,
-                Amount: totalPrice,
+                Amount: totalPrice * 10,
                 CallBackUrl: 'http://localhost:5000/payment/callback',
                 AdditionalData: 'بابت خرید محصول',
                 Originator: 'بابت خرید محصول',
