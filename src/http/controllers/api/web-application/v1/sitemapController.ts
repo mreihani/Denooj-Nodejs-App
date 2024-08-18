@@ -11,21 +11,6 @@ export const generateSitemaps = async(req: express.Request, res: express.Respons
     const products = await getProducts();
 
     try {
-        // Remove the file
-        let siteMapFilePath = './public/sitemaps/sitemap-index.xml';
-        fs.stat(siteMapFilePath, function (err, stats) {
-            console.log(stats);//here we got all information of file in stats variable
-         
-            if (err) {
-                return console.error(err);
-            }
-         
-            fs.unlink(siteMapFilePath,function(err){
-                if(err) return console.log(err);
-                console.log('file deleted successfully');
-            });  
-        });
-
         const sitemap_items = [
             { url: '', priority: 1 },
             { url: 'products' },
