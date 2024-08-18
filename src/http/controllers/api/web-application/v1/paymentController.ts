@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PaymentModel } from '../../../../../models/payment';
 import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../models/order';
 import { v4 as uuidv4 } from 'uuid';
-import * as soap from 'soap';
+const soap = require('soap');
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
@@ -71,7 +71,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 
         // Create the SOAP client
         const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?wsdl';
-        soap.createClient(gatewayUrl, function(err, client) {
+        soap.createClient(gatewayUrl, function(err :any, client :any) {
             if (err) {
                 console.error('Error creating SOAP client:', err);
                 return;
@@ -87,7 +87,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
                 Originator: 'بابت خرید محصول',
             }
 
-            client.SalePayment(requestData, function(err :any, result :any) {
+            client.SalePaymentRequest(requestData, function(err :any, result :any) {
                 if (err) {
                     console.error('Error making SOAP request:', err);
                     return;
