@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PaymentModel } from '../../../../../models/payment';
 import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../models/order';
 import { v4 as uuidv4 } from 'uuid';
-import soap from 'soap';
+import * as soap from 'soap';
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
