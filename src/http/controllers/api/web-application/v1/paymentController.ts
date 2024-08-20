@@ -158,15 +158,13 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         await emptyCart(req, res);
 
                         return res.json({status: 'success'});
-                    } else {
-                        return res.json({status: 'failure'});
                     }
                 });
             });
 
-        } else {
-            return res.json({status: 'failure'});
-        }
+        } 
+
+        return res.json({status: 'failure'});
 
     } catch(error) {
         console.log(error);
