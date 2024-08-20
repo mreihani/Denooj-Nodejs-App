@@ -157,15 +157,15 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         // clear cart after successful payment
                         await emptyCart(req, res);
 
-                        return res.json(result.ConfirmPaymentResult);
+                        return res.json({status: 'success'});
                     } else {
-                        return res.json(params);
+                        return res.json({status: 'failure'});
                     }
                 });
             });
 
         } else {
-            return res.json(params);
+            return res.json({status: 'failure'});
         }
 
     } catch(error) {
