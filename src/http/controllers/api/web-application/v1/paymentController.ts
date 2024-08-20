@@ -107,8 +107,8 @@ export const callback = async (req: express.Request, res: express.Response) => {
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
         const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
 
-        if(params.status === '0') {
-
+        if(params.status !== '0') {
+            return res.json({ status : 'failed'});
         }
 
         // Make a SOAP request to confirm payment
@@ -136,15 +136,12 @@ export const callback = async (req: express.Request, res: express.Response) => {
                 await PaymentModel.findOneAndUpdate(filter, update, {
                     returnOriginal: false
                 });
+
+                return res.json({ status : 'success'});
+            } else {
+                return res.json({ status : 'failed'});
             } 
         });
-
-        const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
-        let finalStatus = paymentObj.status === true ? 'success' : 'failed';
-        console.log(paymentObj);
-        console.log(finalStatus);
-
-        return res.json({ status : finalStatus});
 
     } catch(error) {
         console.log(error);
