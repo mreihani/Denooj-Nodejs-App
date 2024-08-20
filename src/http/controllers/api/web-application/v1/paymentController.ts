@@ -126,11 +126,11 @@ export const callback = async (req: express.Request, res: express.Response) => {
                 const update = { 
                     status: true,
                     resnumber: params.OrderId,
-                    refnumber: result.ConfirmPaymentResult.Token,
+                    refnumber: result[0].ConfirmPaymentResult.Token,
                     tranceNo: params.STraceNo,
                     amount: params.Amount,
-                    rrn: result.ConfirmPaymentResult.RRN,
-                    securePan: result.ConfirmPaymentResult.CardNumberMasked
+                    rrn: result[0].ConfirmPaymentResult.RRN,
+                    securePan: result[0].ConfirmPaymentResult.CardNumberMasked
                 };
 
                 await PaymentModel.findOneAndUpdate(filter, update, {
