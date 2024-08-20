@@ -137,6 +137,9 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     returnOriginal: false
                 });
 
+                // clear cart after successful payment
+                req.session.cart = {};
+
                 return res.json({ status : 'success'});
             } else {
                 return res.json({ status : 'failed'});
