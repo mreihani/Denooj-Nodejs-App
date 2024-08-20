@@ -156,15 +156,17 @@ export const callback = async (req: express.Request, res: express.Response) => {
                             returnOriginal: false
                         });
 
-                        // // clear cart after successful payment
-                        // await emptyCart(req, res);
-
                         // set final status
                         finalStatus = 1;
                     }
                 });
             });
         } 
+
+        // clear cart after successful payment
+        if(finalStatus === 1) {
+            await emptyCart(req, res);
+        }
 
         return res.json({ status : finalStatus});
 
