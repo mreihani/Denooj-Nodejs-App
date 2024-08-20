@@ -110,7 +110,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
-        console.log(req.body);
+        console.log(req.query);
 
         
 
