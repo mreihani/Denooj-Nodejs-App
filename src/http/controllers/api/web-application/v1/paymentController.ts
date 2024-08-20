@@ -49,7 +49,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         // const resNumber :string = uuidv4();
         // const uid = new ShortUniqueId({ length: 10, dictionary: 'number' });
         // const resNumber = uid.randomUUID();
-        const resNumber = createUniqueResNum();
+        const resNumber = await createUniqueResNum();
         
         let payament = new PaymentModel({
             resnumber: resNumber
