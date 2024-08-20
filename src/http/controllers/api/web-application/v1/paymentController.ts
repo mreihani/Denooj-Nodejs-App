@@ -119,7 +119,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
             soap.createClient(gatewayUrl, function(err :any, client :any) {
                 if (err) {
                     console.error('Error creating SOAP client:', err);
-                    return;
+                    return res.sendStatus(500); 
                 }
             
                 // Make a SOAP request
@@ -131,7 +131,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                 client.ConfirmPayment({ requestData:  requestData }, async function(err :any, result :any) {
                     if (err) {
                         console.error('Error making SOAP request:', err);
-                        return;
+                        return res.sendStatus(500);
                     }
 
                     if(result.ConfirmPaymentResult.Status === 0) {
@@ -151,12 +151,12 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         });
 
                         return res.json(result.ConfirmPaymentResult);
-                    }
+                    } 
                 });
             });
+        } else {
+            return res.json(params);
         }
-
-        return res.json(params);
 
     } catch(error) {
         console.log(error);
