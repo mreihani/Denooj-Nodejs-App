@@ -86,7 +86,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
                 LoginAccount: '6405hRYLc117Q0Elp2P8',
                 OrderId: resNumber,
                 Amount: totalPrice * 10,
-                CallBackUrl: 'http://localhost:5000/payment/callback',
+                CallBackUrl: 'https://denooj.com/api/bank-callback',
                 AdditionalData: '',
                 Originator: ''
             };
@@ -109,45 +109,48 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
-        if(req.query.Status && req.query.Status !== 'OK') {
-            //res.redirect();
-        }
 
-        let payment = (await PaymentModel.findOne({resnumber: req.query})).populated('product').exec();
+        console.log(req);
 
-        if(!payment.product) {
-            // return
-        }
+        // if(req.query.Status && req.query.Status !== 'OK') {
+        //     //res.redirect();
+        // }
 
-        let params = {
-            MerchantId: 'awdwad684',
-            Amount: 1000,
-            Authority: 1
-        }
+        // let payment = (await PaymentModel.findOne({resnumber: req.query})).populated('product').exec();
 
-        // Send a POST request
-        axios({
-            method: 'POST',
-            url: 'https://www.zarinpal.com/pg/rest',
-            headers: {
-                'cache-control' : 'no-cache',
-                'Content-Type': 'application/json'
-            },
-            data: params
-        }).then(async function (response) {
-            let payment = new PaymentModel({
-                user: req.session.userId,
-                product: {},
-                resnumber: "",
-                price: ""
-            });
+        // if(!payment.product) {
+        //     // return
+        // }
 
-            await payment.save();
+        // let params = {
+        //     MerchantId: 'awdwad684',
+        //     Amount: 1000,
+        //     Authority: 1
+        // }
 
-            res.redirect(`https://www.zarinpal.com/pg/${response}`);
-        });
+        // // Send a POST request
+        // axios({
+        //     method: 'POST',
+        //     url: 'https://www.zarinpal.com/pg/rest',
+        //     headers: {
+        //         'cache-control' : 'no-cache',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     data: params
+        // }).then(async function (response) {
+        //     let payment = new PaymentModel({
+        //         user: req.session.userId,
+        //         product: {},
+        //         resnumber: "",
+        //         price: ""
+        //     });
 
-        return res.json(payment);
+        //     await payment.save();
+
+        //     res.redirect(`https://www.zarinpal.com/pg/${response}`);
+        // });
+
+        // return res.json(payment);
 
     } catch(error) {
         console.log(error);
