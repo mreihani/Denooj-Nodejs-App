@@ -139,7 +139,6 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         return res.sendStatus(500);
                     }
 
-                    
                     if(result.ConfirmPaymentResult.Status === 0) {
                         const filter = { resnumber: params.OrderId };
                         const update = { 
