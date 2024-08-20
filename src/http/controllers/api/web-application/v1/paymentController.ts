@@ -112,7 +112,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
         console.log(req.query);
 
-        
+        return res.json(req.query);
 
         // if(req.query.Status && req.query.Status !== 'OK') {
         //     //res.redirect();
