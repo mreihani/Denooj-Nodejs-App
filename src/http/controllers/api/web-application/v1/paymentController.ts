@@ -141,27 +141,28 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
                     
                     if(result.ConfirmPaymentResult.Status === 0) {
-                        // const filter = { resnumber: params.OrderId };
-                        // const update = { 
-                        //     status: true,
-                        //     resnumber: params.OrderId,
-                        //     refnumber: result.ConfirmPaymentResult.Token,
-                        //     tranceNo: params.STraceNo,
-                        //     amount: params.Amount,
-                        //     rrn: result.ConfirmPaymentResult.RRN,
-                        //     securePan: result.ConfirmPaymentResult.CardNumberMasked
-                        // };
+                        const filter = { resnumber: params.OrderId };
+                        const update = { 
+                            status: true,
+                            resnumber: params.OrderId,
+                            refnumber: result.ConfirmPaymentResult.Token,
+                            tranceNo: params.STraceNo,
+                            amount: params.Amount,
+                            rrn: result.ConfirmPaymentResult.RRN,
+                            securePan: result.ConfirmPaymentResult.CardNumberMasked
+                        };
 
-                        // await PaymentModel.findOneAndUpdate(filter, update, {
-                        //     returnOriginal: false
-                        // });
+                        await PaymentModel.findOneAndUpdate(filter, update, {
+                            returnOriginal: false
+                        });
 
                         // // clear cart after successful payment
                         // await emptyCart(req, res);
 
                         finalStatus = 1;
 
-                        console.log(result.ConfirmPaymentResult);
+                        //console.log(result.ConfirmPaymentResult);
+                        console.log(params);
 
                     }
                 });
