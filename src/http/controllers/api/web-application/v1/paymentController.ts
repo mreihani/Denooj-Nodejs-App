@@ -118,7 +118,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
         if(params.status === '0') {
 
-            const payment = await PaymentModel.findOne({ resnumber: params.OrderId });
+           
 
             // Create the SOAP client
             const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
@@ -134,55 +134,33 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     Token: params.Token,
                 };
 
-                client.ConfirmPayment({ requestData:  requestData }, function(err :any, result :any) {
+                client.ConfirmPayment({ requestData:  requestData }, async function(err :any, result :any) {
                     if (err) {
                         console.error('Error making SOAP request:', err);
                         return;
                     }
 
-                    // delete later
-                    console.log(result);
+                    if(result.ConfirmPaymentResult.Status === 0) {
+                        const filter = { resnumber: params.OrderId };
+                        const update = { 
+                            status: true,
+                            resnumber: params.OrderId,
+                            refnumber: result.ConfirmPaymentResult.Token,
+                            tranceNo: params.STraceNo,
+                            amount: params.Amount,
+                            rrn: result.ConfirmPaymentResult.RRN,
+                            securePan: result.ConfirmPaymentResult.CardNumberMasked
+                        };
+
+                        await PaymentModel.findOneAndUpdate(filter, update, {
+                            returnOriginal: false
+                        });
+                    }
 
                     return res.json(result);
                 });
             });
-         
-            //res.redirect();
         }
-
-        // let payment = (await PaymentModel.findOne({resnumber: req.query})).populated('product').exec();
-
-        // if(!payment.product) {
-        //     // return
-        // }
-
-        // let params = {
-        //     MerchantId: 'awdwad684',
-        //     Amount: 1000,
-        //     Authority: 1
-        // }
-
-        // // Send a POST request
-        // axios({
-        //     method: 'POST',
-        //     url: 'https://www.zarinpal.com/pg/rest',
-        //     headers: {
-        //         'cache-control' : 'no-cache',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     data: params
-        // }).then(async function (response) {
-        //     let payment = new PaymentModel({
-        //         user: req.session.userId,
-        //         product: {},
-        //         resnumber: "",
-        //         price: ""
-        //     });
-
-        //     await payment.save();
-
-        //     res.redirect(`https://www.zarinpal.com/pg/${response}`);
-        // });
 
         return res.json(params);
 
