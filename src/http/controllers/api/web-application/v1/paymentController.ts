@@ -135,7 +135,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     Token: params.Token,
                 };
 
-                await client.ConfirmPaymentAsync({ requestData:  requestData }, async function(err :any, result :any) {
+                await client.ConfirmPayment({ requestData:  requestData }, async function(err :any, result :any) {
                     if (err) {
                         console.error('Error making SOAP request:', err);
                         return res.sendStatus(500);
