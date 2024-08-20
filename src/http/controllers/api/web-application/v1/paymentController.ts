@@ -97,43 +97,10 @@ export const postPayment = async (req: express.Request, res: express.Response) =
                     return;
                 }
 
-                // Handle the SOAP response
-                console.log(result);
+                return res.json(result);
             });
         });
-
-
-
-
-
-
-
-        // Send a POST request
-        // axios({
-        //     method: 'POST',
-        //     url: 'https://www.zarinpal.com/pg/rest',
-        //     headers: {
-        //         'cache-control' : 'no-cache',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     data: params
-        // }).then(async function (response) {
-        //     let payment = new PaymentModel({
-                
-        //     });
-
-        //     await payment.save();
-
-        //     return res.json({
-        //         'status': 'success',
-        //         'redirect': `https://www.zarinpal.com/pg/${response}`
-        //     });
-        // });
-
-        return res.json({
-            'status': 'success',
-            'redirect': ''
-        });
+       
     } catch(error) {
         console.log(error);
         return res.sendStatus(400);
