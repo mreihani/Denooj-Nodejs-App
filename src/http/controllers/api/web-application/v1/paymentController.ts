@@ -7,6 +7,7 @@ const soap = require('soap');
 import ShortUniqueId from 'short-unique-id';
 import { emptyCart } from './cartController';
 require('dotenv').config();
+import { createUniqueResNum } from '../../../../../models/payment';
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
@@ -46,8 +47,9 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         const lotteryNumbers = await calculateOrderNumber(productsIdArray);
         
         // const resNumber :string = uuidv4();
-        const uid = new ShortUniqueId({ length: 10, dictionary: 'number' });
-        const resNumber = uid.randomUUID();
+        // const uid = new ShortUniqueId({ length: 10, dictionary: 'number' });
+        // const resNumber = uid.randomUUID();
+        const resNumber = createUniqueResNum();
         
         let payament = new PaymentModel({
             resnumber: resNumber
@@ -62,9 +64,9 @@ export const postPayment = async (req: express.Request, res: express.Response) =
             products: products,
             price: totalPrice,
             status: 'preparation',
-            // address: 2,
-            // postalCode: 3,
-            // orderNote: 4
+            // address: '',
+            // postalCode: '',
+            // orderNote: ''
         });
         await order.save();
 
@@ -82,8 +84,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         // Make a SOAP request
         const requestData = {
             LoginAccount: LoginAccount,
-            // OrderId: resNumber,
-            OrderId: '66c49e8983f3618f11d0674f',
+            OrderId: resNumber,
             Amount: totalPrice * 10,
             CallBackUrl: 'https://denooj.com/api/bank-gateway/callback',
             AdditionalData: '',
