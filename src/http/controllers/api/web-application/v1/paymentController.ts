@@ -107,25 +107,48 @@ export const postPayment = async (req: express.Request, res: express.Response) =
     }
 }
 
-export const callbackCsrf = async (req: express.Request, res: express.Response) => {
-    try {
-        return res.send({csrfToken: req.csrfToken()});
-    } catch(error) {
-        console.log(error);
-        return res.sendStatus(400);
-    }
-}
-
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
-        console.log(req.query);
+        //console.log(req.query);
 
-        return res.json(req.query);
+        //return res.json(req.query);
 
-        // if(req.query.Status && req.query.Status !== 'OK') {
-        //     //res.redirect();
-        // }
+        const params = req.query;
+
+        if(params.status === '0') {
+
+            const payment = await PaymentModel.findOne({ resnumber: params.OrderId });
+
+            // Create the SOAP client
+            const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
+            soap.createClient(gatewayUrl, function(err :any, client :any) {
+                if (err) {
+                    console.error('Error creating SOAP client:', err);
+                    return;
+                }
+            
+            // Make a SOAP request
+                const requestData = {
+                    LoginAccount: '6405hRYLc117Q0Elp2P8',
+                    Token: params.token,
+                };
+
+                client.ConfirmPayment({ requestData:  requestData }, function(err :any, result :any) {
+                    if (err) {
+                        console.error('Error making SOAP request:', err);
+                        return;
+                    }
+
+                    // delete later
+                    console.log(result);
+
+                    return res.json(result);
+                });
+            });
+         
+            //res.redirect();
+        }
 
         // let payment = (await PaymentModel.findOne({resnumber: req.query})).populated('product').exec();
 
