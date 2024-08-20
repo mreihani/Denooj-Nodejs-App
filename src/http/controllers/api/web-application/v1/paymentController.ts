@@ -173,6 +173,8 @@ export const callback = async (req: express.Request, res: express.Response) => {
         //     await emptyCart(req, res);
         // }
 
+        console.log(finalStatus);
+
         return res.json({ status : finalStatus});
 
     } catch(error) {
