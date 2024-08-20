@@ -116,8 +116,6 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
         const params = req.query;
 
-        console.log(params);
-
         if(params.status === '0') {
 
             const payment = await PaymentModel.findOne({ resnumber: params.OrderId });
@@ -130,12 +128,10 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     return;
                 }
             
-                
-
                 // Make a SOAP request
                 const requestData = {
                     LoginAccount: '6405hRYLc117Q0Elp2P8',
-                    Token: params.token,
+                    Token: params.Token,
                 };
 
                 client.ConfirmPayment({ requestData:  requestData }, function(err :any, result :any) {
