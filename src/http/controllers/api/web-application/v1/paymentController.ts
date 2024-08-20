@@ -142,12 +142,12 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         const filter = { resnumber: params.OrderId };
                         const update = { 
                             status: true,
-                            // resnumber: params.OrderId,
-                            // refnumber: result.ConfirmPaymentResult.Token,
-                            // tranceNo: params.STraceNo,
-                            // amount: params.Amount,
-                            // rrn: result.ConfirmPaymentResult.RRN,
-                            // securePan: result.ConfirmPaymentResult.CardNumberMasked
+                            resnumber: params.OrderId,
+                            refnumber: result.ConfirmPaymentResult.Token,
+                            tranceNo: params.STraceNo,
+                            amount: params.Amount,
+                            rrn: result.ConfirmPaymentResult.RRN,
+                            securePan: result.ConfirmPaymentResult.CardNumberMasked
                         };
 
                         await PaymentModel.findOneAndUpdate(filter, update, {
@@ -158,14 +158,14 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         await emptyCart(req, res);
 
                         //return res.send(1);
-                        return;
+                        return 1;
                     }
                 });
             });
         } 
 
         // return res.send(0);
-        return;
+        return 0;
 
     } catch(error) {
         console.log(error);
