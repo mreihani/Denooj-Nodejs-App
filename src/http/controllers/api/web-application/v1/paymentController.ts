@@ -46,7 +46,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         const lotteryNumbers = await calculateOrderNumber(productsIdArray);
         
         // const resNumber :string = uuidv4();
-        const uid = new ShortUniqueId({ length: 19, dictionary: 'number' });
+        const uid = new ShortUniqueId({ length: 10, dictionary: 'number' });
         const resNumber = uid.randomUUID();
         
         let payament = new PaymentModel({
@@ -113,7 +113,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
-        let finalStatus = 0;
+        let finalStatus;
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
 
@@ -141,9 +141,6 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     
                     if(result.ConfirmPaymentResult.Status === 0) {
 
-                        // set final status
-                        finalStatus = 1;
-
                         const filter = { resnumber: params.OrderId };
                         const update = { 
                             status: true,
@@ -158,10 +155,18 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         await PaymentModel.findOneAndUpdate(filter, update, {
                             returnOriginal: false
                         });
+
+                        // set final status
+                        finalStatus = 1;
+
+                    } else {
+                        finalStatus = 0;
                     }
                 });
             });
-        } 
+        } else {
+            finalStatus = 0;
+        }
 
         // clear cart after successful payment
         // if(finalStatus === 1) {
