@@ -86,7 +86,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
                 LoginAccount: '6405hRYLc117Q0Elp2P8',
                 OrderId: resNumber,
                 Amount: totalPrice * 10,
-                CallBackUrl: 'https://denooj.com/api/bank-callback',
+                CallBackUrl: 'https://denooj.com/api/bank-gateway/callback',
                 AdditionalData: '',
                 Originator: ''
             };
