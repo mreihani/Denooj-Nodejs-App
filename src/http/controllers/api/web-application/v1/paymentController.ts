@@ -166,7 +166,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
 
 
-            
+
             // Make a SOAP request to confirm payment
             const requestData = {
                 LoginAccount: LoginAccount,
@@ -176,36 +176,38 @@ export const callback = async (req: express.Request, res: express.Response) => {
                 return client.ConfirmPayment({ requestData:  requestData });
             }).then(async (result :any) => {
                 
-                if(result.ConfirmPaymentResult.Status === 0) {
+                // if(result.ConfirmPaymentResult.Status === 0) {
 
-                    const filter = { resnumber: params.OrderId };
-                    const update = { 
-                        status: true,
-                        resnumber: params.OrderId,
-                        refnumber: result.ConfirmPaymentResult.Token,
-                        tranceNo: params.STraceNo,
-                        amount: params.Amount,
-                        rrn: result.ConfirmPaymentResult.RRN,
-                        securePan: result.ConfirmPaymentResult.CardNumberMasked
-                    };
+                //     const filter = { resnumber: params.OrderId };
+                //     const update = { 
+                //         status: true,
+                //         resnumber: params.OrderId,
+                //         refnumber: result.ConfirmPaymentResult.Token,
+                //         tranceNo: params.STraceNo,
+                //         amount: params.Amount,
+                //         rrn: result.ConfirmPaymentResult.RRN,
+                //         securePan: result.ConfirmPaymentResult.CardNumberMasked
+                //     };
 
-                    await PaymentModel.findOneAndUpdate(filter, update, {
-                        returnOriginal: false
-                    });
-                } 
+                //     await PaymentModel.findOneAndUpdate(filter, update, {
+                //         returnOriginal: false
+                //     });
+                // } 
+
+                console.log(result);
             });
         } 
 
-        const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
-        let finalStatus = paymentObj.status === true ? 'success' : 'failed';
-        console.log(paymentObj);
-        console.log(finalStatus);
+        // const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
+        // let finalStatus = paymentObj.status === true ? 'success' : 'failed';
+        // console.log(paymentObj);
+        // console.log(finalStatus);
         // clear cart after successful payment
         // if(finalStatus === 1) {
         //     await emptyCart(req, res);
         // }
 
-        return res.json({ status : finalStatus});
+        // return res.json({ status : finalStatus});
 
     } catch(error) {
         console.log(error);
