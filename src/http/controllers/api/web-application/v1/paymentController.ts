@@ -123,9 +123,12 @@ export const callback = async (req: express.Request, res: express.Response) => {
             Token: params.Token,
         };
 
-        // var client = await soap.createClientAsync(gatewayUrl);
-        // var result = await client.ConfirmPayment({ requestData:  requestData });
-        console.log('sada');
+        soap.createClientAsync(gatewayUrl).then((client :any) => {
+            return client.ConfirmPayment({requestData});
+        }).then((result :any) => {
+            console.log(result);
+        });
+
 
     } catch(error) {
         console.log(error);
