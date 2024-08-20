@@ -113,7 +113,9 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
-        let finalStatus = 'failed';
+        // Capture `res` in a variable to make it accessible inside the SOAP request callback
+        const response = res;
+       
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
 
@@ -124,7 +126,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
             soap.createClient(gatewayUrl, function(err :any, client :any) {
                 if (err) {
                     console.error('Error creating SOAP client:', err);
-                    return res.sendStatus(500); 
+                    return response.sendStatus(500); 
                 }
             
                 // Make a SOAP request to confirm payment
@@ -156,8 +158,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                             returnOriginal: false
                         });
 
-                        let finalStatus = 'success';
-                        return res.json({ status : finalStatus});
+                        return response.json({ status : 'success'});
                     } 
                 });
             });
@@ -168,8 +169,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
         //     await emptyCart(req, res);
         // }
 
-
-        return res.json({ status : finalStatus});
+        return res.json({ status : 'failed'});
 
     } catch(error) {
         console.log(error);
