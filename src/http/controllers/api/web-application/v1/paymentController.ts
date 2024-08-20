@@ -156,8 +156,8 @@ export const callback = async (req: express.Request, res: express.Response) => {
                             returnOriginal: false
                         });
 
-                        // clear cart after successful payment
-                        await emptyCart(req, res);
+                        // // clear cart after successful payment
+                        // await emptyCart(req, res);
 
                         // set final status
                         finalStatus = 1;
