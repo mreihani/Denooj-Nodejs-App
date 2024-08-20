@@ -113,6 +113,9 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
+        // Capture `res` in a variable to make it accessible inside the SOAP request callback
+        const response = res;
+       
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
 
@@ -120,33 +123,43 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
             // Create the SOAP client
             const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
-            const client = await soap.createClientAsync(gatewayUrl); // Change to async version
-
-            // Make a SOAP request to confirm payment
-            const requestData = {
-                LoginAccount: LoginAccount,
-                Token: params.Token,
-            };
-
-            const result = await client.ConfirmPaymentAsync({ requestData:  requestData }); // Change to async version
-
-            if(result.ConfirmPaymentResult.Status === 0) {
-
-                const filter = { resnumber: params.OrderId };
-                const update = { 
-                    status: true,
-                    resnumber: params.OrderId,
-                    refnumber: result.ConfirmPaymentResult.Token,
-                    tranceNo: params.STraceNo,
-                    amount: params.Amount,
-                    rrn: result.ConfirmPaymentResult.RRN,
-                    securePan: result.ConfirmPaymentResult.CardNumberMasked
+            await soap.createClientAsync(gatewayUrl, async function(err :any, client :any) {
+                if (err) {
+                    console.error('Error creating SOAP client:', err);
+                    return response.sendStatus(500); 
+                }
+            
+                // Make a SOAP request to confirm payment
+                const requestData = {
+                    LoginAccount: LoginAccount,
+                    Token: params.Token,
                 };
 
-                await PaymentModel.findOneAndUpdate(filter, update, {
-                    returnOriginal: false
+                await client.ConfirmPaymentAsync({ requestData:  requestData }, async function(err :any, result :any) {
+                    if (err) {
+                        console.error('Error making SOAP request:', err);
+                        return res.sendStatus(500);
+                    }
+                    
+                    if(result.ConfirmPaymentResult.Status === 0) {
+
+                        const filter = { resnumber: params.OrderId };
+                        const update = { 
+                            status: true,
+                            resnumber: params.OrderId,
+                            refnumber: result.ConfirmPaymentResult.Token,
+                            tranceNo: params.STraceNo,
+                            amount: params.Amount,
+                            rrn: result.ConfirmPaymentResult.RRN,
+                            securePan: result.ConfirmPaymentResult.CardNumberMasked
+                        };
+
+                        await PaymentModel.findOneAndUpdate(filter, update, {
+                            returnOriginal: false
+                        });
+                    } 
                 });
-            } 
+            });
         } 
 
         const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
