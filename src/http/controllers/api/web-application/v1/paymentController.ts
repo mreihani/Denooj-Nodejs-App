@@ -184,7 +184,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
         //     res.redirect(`https://www.zarinpal.com/pg/${response}`);
         // });
 
-        // return res.json(payment);
+        return res.json(params);
 
     } catch(error) {
         console.log(error);
