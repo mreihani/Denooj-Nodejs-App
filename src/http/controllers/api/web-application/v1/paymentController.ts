@@ -110,15 +110,9 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
-        //console.log(req.query);
-
-        //return res.json(req.query);
-
         const params = req.query;
 
         if(params.status === '0') {
-
-           
 
             // Create the SOAP client
             const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
@@ -157,7 +151,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         });
                     }
 
-                    return res.json(result);
+                    return res.json(result.ConfirmPaymentResult);
                 });
             });
         }
