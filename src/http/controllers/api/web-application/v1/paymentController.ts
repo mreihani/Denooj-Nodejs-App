@@ -117,6 +117,8 @@ export const callback = async (req: express.Request, res: express.Response) => {
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
 
+        console.log(params.status);
+
         if(params.status === '0') {
 
             // Create the SOAP client
