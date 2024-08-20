@@ -123,8 +123,8 @@ export const callback = async (req: express.Request, res: express.Response) => {
             Token: params.Token,
         };
 
-        await soap.createClientAsync(gatewayUrl).then((client :any) => {
-            return client.ConfirmPayment({requestData});
+        soap.createClientAsync(gatewayUrl).then((client :any) => {
+            return client.ConfirmPaymentAsync({requestData});
         }).then((result :any) => {
             console.log(result);
         });
