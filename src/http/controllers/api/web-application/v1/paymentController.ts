@@ -78,30 +78,47 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         // Create the SOAP client
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
         const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?wsdl';
-        soap.createClient(gatewayUrl, function(err :any, client :any) {
-            if (err) {
-                console.error('Error creating SOAP client:', err);
-                return;
-            }
+        // soap.createClient(gatewayUrl, function(err :any, client :any) {
+        //     if (err) {
+        //         console.error('Error creating SOAP client:', err);
+        //         return;
+        //     }
          
-            // Make a SOAP request
-            const requestData = {
-                LoginAccount: LoginAccount,
-                OrderId: resNumber,
-                Amount: totalPrice * 10,
-                CallBackUrl: 'https://denooj.com/api/bank-gateway/callback',
-                AdditionalData: '',
-                Originator: ''
-            };
+        //     // Make a SOAP request
+        //     const requestData = {
+        //         LoginAccount: LoginAccount,
+        //         OrderId: resNumber,
+        //         Amount: totalPrice * 10,
+        //         CallBackUrl: 'https://denooj.com/api/bank-gateway/callback',
+        //         AdditionalData: '',
+        //         Originator: ''
+        //     };
 
-            client.SalePaymentRequest({ requestData:  requestData }, function(err :any, result :any) {
-                if (err) {
-                    console.error('Error making SOAP request:', err);
-                    return;
-                }
+        //     client.SalePaymentRequest({ requestData:  requestData }, function(err :any, result :any) {
+        //         if (err) {
+        //             console.error('Error making SOAP request:', err);
+        //             return;
+        //         }
 
-                return res.json(result);
-            });
+        //         return res.json(result);
+        //     });
+        // });
+
+
+        // Make a SOAP request
+        const requestData = {
+            LoginAccount: LoginAccount,
+            OrderId: resNumber,
+            Amount: totalPrice * 10,
+            CallBackUrl: 'https://denooj.com/api/bank-gateway/callback',
+            AdditionalData: '',
+            Originator: ''
+        };
+
+        soap.createClientAsync(gatewayUrl).then((client :any) => {
+            return client.SalePaymentRequestAsync({requestData});
+        }).then((result :any) => {
+            return res.json(result);
         });
        
     } catch(error) {
