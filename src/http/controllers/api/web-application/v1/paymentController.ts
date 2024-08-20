@@ -117,8 +117,6 @@ export const callback = async (req: express.Request, res: express.Response) => {
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
 
-        console.log(params.status);
-
         if(params.status === '0') {
 
             // Create the SOAP client
@@ -141,8 +139,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         return res.sendStatus(500);
                     }
 
-                    console.log(result.ConfirmPaymentResult.Status);
-
+                    
                     if(result.ConfirmPaymentResult.Status === 0) {
                         // const filter = { resnumber: params.OrderId };
                         // const update = { 
@@ -163,6 +160,9 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         // await emptyCart(req, res);
 
                         finalStatus = 1;
+
+                        console.log(result.ConfirmPaymentResult);
+
                     }
                 });
             });
