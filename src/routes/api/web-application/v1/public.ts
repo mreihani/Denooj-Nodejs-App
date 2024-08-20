@@ -43,7 +43,7 @@ export default (router: express.Router) => {
     router.post('/payment', isUserAuthenticated, csrfProtection, postPayment);
     // payment gateway callback routes
     router.get('/payment/callback', callbackCsrf);
-    router.post('/payment/callback', callback);
+    router.post('/payment/callback', csrfProtection, callback);
 
     // products routes
     router.get('/products', getAllProducts);
