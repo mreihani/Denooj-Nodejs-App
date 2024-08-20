@@ -123,7 +123,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
             // Create the SOAP client
             const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
-            soap.createClient(gatewayUrl, function(err :any, client :any) {
+            await soap.createClient(gatewayUrl, function(err :any, client :any) {
                 if (err) {
                     console.error('Error creating SOAP client:', err);
                     return response.sendStatus(500); 
@@ -163,7 +163,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
         } 
 
         const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
-        let finalStatus = paymentObj.status === true ? 'success' : 'false';
+        let finalStatus = paymentObj.status === true ? 'success' : 'failed';
         console.log(paymentObj);
         console.log(finalStatus);
         // clear cart after successful payment
