@@ -138,8 +138,12 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         console.error('Error making SOAP request:', err);
                         return res.sendStatus(500);
                     }
-
+                    
                     if(result.ConfirmPaymentResult.Status === 0) {
+
+                        // set final status
+                        finalStatus = 1;
+
                         const filter = { resnumber: params.OrderId };
                         const update = { 
                             status: true,
@@ -154,9 +158,6 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         await PaymentModel.findOneAndUpdate(filter, update, {
                             returnOriginal: false
                         });
-
-                        // set final status
-                        finalStatus = 1;
                     }
                 });
             });
