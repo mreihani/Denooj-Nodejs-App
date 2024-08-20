@@ -118,7 +118,6 @@ export const callback = async (req: express.Request, res: express.Response) => {
        
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
-        let finalStatus = 'failed';
 
         if(params.status === '0') {
 
@@ -158,19 +157,18 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         await PaymentModel.findOneAndUpdate(filter, update, {
                             returnOriginal: false
                         });
-
-                        finalStatus = 'success';
                     } 
                 });
             });
         } 
 
+        const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
+        let finalStatus = paymentObj.status === true ? 'success' : 'false';
+
         // clear cart after successful payment
         // if(finalStatus === 1) {
         //     await emptyCart(req, res);
         // }
-
-        console.log(finalStatus);
 
         return res.json({ status : finalStatus});
 
