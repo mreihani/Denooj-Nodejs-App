@@ -118,7 +118,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         soap.createClientAsync(gatewayUrl).then((client :any) => {
             return client.SalePaymentRequestAsync({ requestData:  requestData });
         }).then((result :any) => {
-            return res.json(result);
+            return res.json(result[0]);
         });
        
     } catch(error) {
