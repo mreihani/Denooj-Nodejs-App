@@ -2,7 +2,7 @@ import express from 'express';
 import { index } from '../../../../http/controllers/api/web-application/v1/indexController';
 import { getCart, addToCart, removeFromCart, updateCart, clearItemFromCart, emptyCart } from '../../../../http/controllers/api/web-application/v1/cartController';
 import { getAllProducts, getSingleProductBySlug, getTaggedProducts } from '../../../../http/controllers/api/web-application/v1/productController';
-import { callback, getPayment, postPayment } from '../../../../http/controllers/api/web-application/v1/paymentController';
+import { callbackCsrf, callback, getPayment, postPayment } from '../../../../http/controllers/api/web-application/v1/paymentController';
 import { isUserAuthenticated, csrfProtection } from '../../../../http/middlewares/index';
 import { registerIndex, registerAttempt, registerAttemptVerifySmsCode } from '../../../../http/controllers/api/web-application/v1/registerController';
 import { loginIndex, loginAttempt, loginAttemptVerifySmsCode } from '../../../../http/controllers/api/web-application/v1/loginController';
@@ -41,6 +41,8 @@ export default (router: express.Router) => {
     // payment gateway routes
     router.get('/payment', isUserAuthenticated, getPayment);
     router.post('/payment', isUserAuthenticated, csrfProtection, postPayment);
+    // payment gateway callback routes
+    router.get('/payment/callback', callbackCsrf);
     router.post('/payment/callback', callback);
 
     // products routes

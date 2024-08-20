@@ -107,6 +107,15 @@ export const postPayment = async (req: express.Request, res: express.Response) =
     }
 }
 
+export const callbackCsrf = async (req: express.Request, res: express.Response) => {
+    try {
+        return res.send({csrfToken: req.csrfToken()});
+    } catch(error) {
+        console.log(error);
+        return res.sendStatus(400);
+    }
+}
+
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
