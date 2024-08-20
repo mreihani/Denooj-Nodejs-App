@@ -118,6 +118,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
        
         const params = req.query;
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
+        let finalStatus = 'failed';
 
         if(params.status === '0') {
 
@@ -158,7 +159,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                             returnOriginal: false
                         });
 
-                        return response.json({ status : 'success'});
+                        finalStatus = 'success';
                     } 
                 });
             });
@@ -169,7 +170,9 @@ export const callback = async (req: express.Request, res: express.Response) => {
         //     await emptyCart(req, res);
         // }
 
-        return res.json({ status : 'failed'});
+        console.log(finalStatus);
+
+        return res.json({ status : finalStatus});
 
     } catch(error) {
         console.log(error);
