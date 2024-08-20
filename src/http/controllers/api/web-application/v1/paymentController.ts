@@ -165,6 +165,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
         const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
         let finalStatus = paymentObj.status === true ? 'success' : 'false';
         console.log(paymentObj);
+        console.log(finalStatus);
         // clear cart after successful payment
         // if(finalStatus === 1) {
         //     await emptyCart(req, res);
