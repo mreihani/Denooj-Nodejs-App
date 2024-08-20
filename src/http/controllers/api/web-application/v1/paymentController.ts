@@ -46,9 +46,6 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         const productsIdArray = Object.keys(cart.items);
         const lotteryNumbers = await calculateOrderNumber(productsIdArray);
         
-        // const resNumber :string = uuidv4();
-        // const uid = new ShortUniqueId({ length: 10, dictionary: 'number' });
-        // const resNumber = uid.randomUUID();
         const resNumber = await createUniqueResNum();
         
         let payament = new PaymentModel({
@@ -110,6 +107,10 @@ export const callback = async (req: express.Request, res: express.Response) => {
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
         const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
 
+        if(params.status === '0') {
+
+        }
+
         // Make a SOAP request to confirm payment
         const requestData = {
             LoginAccount: LoginAccount,
@@ -118,10 +119,32 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
         soap.createClientAsync(gatewayUrl).then((client :any) => {
             return client.ConfirmPaymentAsync({requestData});
-        }).then((result :any) => {
-            console.log(result);
+        }).then(async (result :any) => {
+            if(result[0].ConfirmPaymentResult.Status === 0) {
+
+                const filter = { resnumber: params.OrderId };
+                const update = { 
+                    status: true,
+                    resnumber: params.OrderId,
+                    refnumber: result.ConfirmPaymentResult.Token,
+                    tranceNo: params.STraceNo,
+                    amount: params.Amount,
+                    rrn: result.ConfirmPaymentResult.RRN,
+                    securePan: result.ConfirmPaymentResult.CardNumberMasked
+                };
+
+                await PaymentModel.findOneAndUpdate(filter, update, {
+                    returnOriginal: false
+                });
+            } 
         });
 
+        const paymentObj = await PaymentModel.findOne({ resnumber: params.OrderId });
+        let finalStatus = paymentObj.status === true ? 'success' : 'failed';
+        console.log(paymentObj);
+        console.log(finalStatus);
+
+        return res.json({ status : finalStatus});
 
     } catch(error) {
         console.log(error);
