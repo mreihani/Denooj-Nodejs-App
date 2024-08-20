@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const soap = require('soap');
 import ShortUniqueId from 'short-unique-id';
 import { emptyCart } from './cartController';
+require('dotenv').config();
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
