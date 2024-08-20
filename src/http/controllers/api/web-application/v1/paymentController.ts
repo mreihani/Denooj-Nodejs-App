@@ -110,7 +110,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
-        console.log(req.body);
+        return res.json(req.body);
 
         // if(req.query.Status && req.query.Status !== 'OK') {
         //     //res.redirect();
