@@ -128,7 +128,9 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     return;
                 }
             
-            // Make a SOAP request
+                console.log(params.token);
+
+                // Make a SOAP request
                 const requestData = {
                     LoginAccount: '6405hRYLc117Q0Elp2P8',
                     Token: params.token,
