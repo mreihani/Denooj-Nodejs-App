@@ -5,6 +5,7 @@ import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../m
 import { v4 as uuidv4 } from 'uuid';
 const soap = require('soap');
 import ShortUniqueId from 'short-unique-id';
+import { emptyCart } from './cartController';
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
@@ -74,6 +75,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
 
 
         // Create the SOAP client
+        const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
         const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?wsdl';
         soap.createClient(gatewayUrl, function(err :any, client :any) {
             if (err) {
@@ -83,7 +85,7 @@ export const postPayment = async (req: express.Request, res: express.Response) =
          
           // Make a SOAP request
             const requestData = {
-                LoginAccount: '6405hRYLc117Q0Elp2P8',
+                LoginAccount: LoginAccount,
                 OrderId: resNumber,
                 Amount: totalPrice * 10,
                 CallBackUrl: 'https://denooj.com/api/bank-gateway/callback',
@@ -111,6 +113,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
     try {
 
         const params = req.query;
+        const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
 
         if(params.status === '0') {
 
@@ -122,9 +125,9 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     return res.sendStatus(500); 
                 }
             
-                // Make a SOAP request
+                // Make a SOAP request to confirm payment
                 const requestData = {
-                    LoginAccount: '6405hRYLc117Q0Elp2P8',
+                    LoginAccount: LoginAccount,
                     Token: params.Token,
                 };
 
@@ -150,10 +153,16 @@ export const callback = async (req: express.Request, res: express.Response) => {
                             returnOriginal: false
                         });
 
+                        // clear cart after successful payment
+                        await emptyCart(req, res);
+
                         return res.json(result.ConfirmPaymentResult);
-                    } 
+                    } else {
+                        return res.json(params);
+                    }
                 });
             });
+
         } else {
             return res.json(params);
         }
