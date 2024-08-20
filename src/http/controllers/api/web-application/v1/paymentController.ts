@@ -149,9 +149,9 @@ export const callback = async (req: express.Request, res: express.Response) => {
                         await PaymentModel.findOneAndUpdate(filter, update, {
                             returnOriginal: false
                         });
-                    }
 
-                    return res.json(result.ConfirmPaymentResult);
+                        return res.json(result.ConfirmPaymentResult);
+                    }
                 });
             });
         }
