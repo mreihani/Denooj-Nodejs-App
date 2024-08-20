@@ -123,7 +123,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
 
             // Create the SOAP client
             const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx?wsdl';
-            await soap.createClient(gatewayUrl, function(err :any, client :any) {
+            await soap.createClient(gatewayUrl, async function(err :any, client :any) {
                 if (err) {
                     console.error('Error creating SOAP client:', err);
                     return response.sendStatus(500); 
@@ -135,7 +135,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                     Token: params.Token,
                 };
 
-                client.ConfirmPayment({ requestData:  requestData }, async function(err :any, result :any) {
+                await client.ConfirmPayment({ requestData:  requestData }, async function(err :any, result :any) {
                     if (err) {
                         console.error('Error making SOAP request:', err);
                         return res.sendStatus(500);
