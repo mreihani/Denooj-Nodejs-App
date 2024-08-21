@@ -68,16 +68,6 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         });
         await order.save();
 
-
-        // TO DO
-        // add sellingCount for each product in product model and after successful payment, it should count+
-        // and also, add each order Id to product model, after successful payment, so that you can track specific product all orders
-        // remember to clear cart after successful payment
-
-        
-
-
-
         // Create the SOAP client
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
         const gatewayUrl = 'https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx?wsdl';
@@ -149,7 +139,7 @@ export const callback = async (req: express.Request, res: express.Response) => {
                 for (let index = 0; index < currentOrderProducts.length; index++) {
                     let productItem = await getProductById(currentOrderProducts[index]._id);
                     productItem.sellingCount ++;
-                    productItem.save();
+                    await productItem.save();
                 }
 
                 // clear cart after successful payment
