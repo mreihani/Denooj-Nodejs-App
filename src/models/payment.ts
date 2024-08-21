@@ -35,6 +35,12 @@ const paymentSchema = new mongoose.Schema({
    toJSON: { virtuals: true } 
 });
 
+paymentSchema.virtual('order', {
+    ref: 'Order',
+    localField: '_id',
+    foreignField: 'payment',
+});
+
 paymentSchema.plugin(mongoosePagination);
 
 export const PaymentModel = mongoose.model('Payment', paymentSchema);

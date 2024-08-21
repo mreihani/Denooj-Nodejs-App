@@ -1,6 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import { PaymentModel } from '../../../../../models/payment';
+import { getProductById } from '../../../../../models/product';
 import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../models/order';
 import { v4 as uuidv4 } from 'uuid';
 const soap = require('soap');
@@ -73,6 +74,9 @@ export const postPayment = async (req: express.Request, res: express.Response) =
         // and also, add each order Id to product model, after successful payment, so that you can track specific product all orders
         // remember to clear cart after successful payment
 
+        
+
+
 
         // Create the SOAP client
         const LoginAccount = process.env.PARSIAN_PAYMENT_GATEWAY_PIN;
@@ -136,6 +140,17 @@ export const callback = async (req: express.Request, res: express.Response) => {
                 await PaymentModel.findOneAndUpdate(filter, update, {
                     returnOriginal: false
                 });
+
+                // add one to selling count in each product
+                const currentPaymentObject = await PaymentModel.findOne({ resnumber: params.OrderId });
+                const currentOrderObject = await currentPaymentObject.populate('order', 'products');
+                const currentOrderProducts = currentOrderObject.order[0].products;
+
+                for (let index = 0; index < currentOrderProducts.length; index++) {
+                    let productItem = await getProductById(currentOrderProducts[index]._id);
+                    productItem.sellingCount ++;
+                    productItem.save();
+                }
 
                 // clear cart after successful payment
                 req.session.cart = {};

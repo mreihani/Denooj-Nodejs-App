@@ -68,7 +68,7 @@ const productSchema = new mongoose.Schema({
     sellingCount: {
         type: Number,
         required: false,
-        default: null
+        default: 0
     },
     recommendedProduct: {
         type: Boolean,
