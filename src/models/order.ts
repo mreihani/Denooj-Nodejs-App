@@ -39,16 +39,6 @@ const orderSchema = new mongoose.Schema({
         required: false,
         default: null
     },
-    address: {
-        type: String,
-        required: false,
-        default: null
-    },
-    postalCode: {
-        type: String,
-        required: false,
-        default: null
-    },
     orderNote: {
         type: String,
         required: false,

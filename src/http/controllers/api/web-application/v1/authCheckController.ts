@@ -13,7 +13,7 @@ export const getUserToken = async(req: express.Request, res: express.Response) =
             });
         }
 
-        const existingUser :any = await getUserBySessionToken(userSessionCookie).select("-_id firstname lastname phone emailAddress gender");
+        const existingUser :any = await getUserBySessionToken(userSessionCookie).select("-_id firstname lastname phone emailAddress gender address postalCode");
 
         if(!existingUser) {
             return res.json({

@@ -1,14 +1,14 @@
 import express from 'express';
-import axios from 'axios';
 import { PaymentModel } from '../../../../../models/payment';
 import { getProductById } from '../../../../../models/product';
+import { UserModel } from '../../../../../models/user';
 import { OrderModel, getAllOrders, calculateOrderNumber } from '../../../../../models/order';
-import { v4 as uuidv4 } from 'uuid';
 const soap = require('soap');
-import ShortUniqueId from 'short-unique-id';
-import { emptyCart } from './cartController';
 require('dotenv').config();
 import { createUniqueResNum } from '../../../../../models/payment';
+import {validationResult} from 'express-validator';
+import validator from 'validator';
+
 
 export const getPayment = async(req: express.Request, res: express.Response) => {
     try {
@@ -20,7 +20,36 @@ export const getPayment = async(req: express.Request, res: express.Response) => 
 }
 
 export const postPayment = async (req: express.Request, res: express.Response) => {
+
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty())  {
+        const errorsArray = errors.array({ onlyFirstError: true });
+
+        return res.json(errorsArray);
+    }
+
     try {
+
+        const { postalCode, address } = req.body;
+        
+        if(!postalCode || !address) {
+            return res.sendStatus(400);
+        }
+
+        const cleanedPostalCode = validator.escape(postalCode);
+        const cleanedAddress = validator.escape(address);
+
+        const filter = { _id: req.session.userId };
+        let update = {
+            postalCode: cleanedPostalCode,
+            address: cleanedAddress,
+        };
+
+        await UserModel.findOneAndUpdate(filter, update, {
+            returnOriginal: false
+        });
+
         // first get items in the cart
         const cart = (req.session.cart == null || req.session.cart == undefined) ? {} : req.session.cart;
 
@@ -62,8 +91,6 @@ export const postPayment = async (req: express.Request, res: express.Response) =
             products: products,
             price: totalPrice,
             status: 'preparation',
-            // address: '',
-            // postalCode: '',
             // orderNote: ''
         });
         await order.save();

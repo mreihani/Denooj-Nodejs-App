@@ -94,8 +94,6 @@ export const getTaggedProducts = async(req: express.Request, res: express.Respon
         } else {
             res.sendStatus(400);
         }
-
-      
        
         return res.json(products);
     } catch(error) {

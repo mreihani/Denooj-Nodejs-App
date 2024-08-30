@@ -42,7 +42,7 @@ export const registerAttempt = async(req: express.Request, res: express.Response
         const user: any = new UserModel({
             firstname: cleanedFirstname,
             lastname: cleanedLastname,
-            fullname: cleanedFirstname + " " +cleanedLastname,
+            fullname: cleanedFirstname + " " + cleanedLastname,
             phone: cleanedPhone,
         });
        

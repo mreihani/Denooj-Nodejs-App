@@ -9,6 +9,7 @@ import { loginIndex, loginAttempt, loginAttemptVerifySmsCode } from '../../../..
 import { getUserToken, logOutApi } from '../../../../http/controllers/api/web-application/v1/authCheckController';
 import { registerAttemptValidation, registerSmsCodeValidation } from '../../../../helpers/validation/user/userRegistrationValidation';
 import { userProfileValidation, userProfileSmsCodeValidation } from '../../../../helpers/validation/user/userProfileValidation';
+import { userCheckoutValidation } from '../../../../helpers/validation/user/userCheckoutValidation';
 import { loginAttemptValidation, loginSmsCodeValidation } from '../../../../helpers/validation/user/userLoginValidation';
 import { getUserProfile, updateUserProfile, userProfileSmsCodeVerify } from '../../../../http/controllers/api/web-application/v1/userProfileController';
 import { getUserOrderById, getUserOrders } from '../../../../http/controllers/api/web-application/v1/orderController';
@@ -40,7 +41,7 @@ export default (router: express.Router) => {
 
     // payment gateway routes
     router.get('/payment', isUserAuthenticated, getPayment);
-    router.post('/payment', isUserAuthenticated, csrfProtection, postPayment);
+    router.post('/payment', isUserAuthenticated, csrfProtection, userCheckoutValidation, postPayment);
     router.get('/payment/callback', callback);
 
     // products routes

@@ -47,6 +47,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['male','female']
     },
+    address: {
+        type: String,
+        required: false,
+        default: null
+    },
+    postalCode: {
+        type: String,
+        required: false,
+        default: null
+    },
     authentication: {
         password: {
             type: String,

@@ -57,7 +57,7 @@ export const orderIndex = async(req: express.Request, res: express.Response) => 
 export const orderShow = async(req: express.Request, res: express.Response) => {
     try {
         let order :Record<string, any> = await OrderModel.findById(req.params.id).populate([
-            { path: 'user', select: '_id firstname lastname phone emailAddress avatar' },
+            { path: 'user', select: '_id firstname lastname phone emailAddress avatar address postalCode' },
             { path: 'payment', select: '_id tranceNo rrn securePan status' },
         ]).exec();
         
